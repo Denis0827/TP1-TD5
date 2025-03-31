@@ -7,7 +7,6 @@
 class KP01withCGInstance {
 private:
     // Definir estructura interna.
-    vector<vector<int>> _arbol;
     vector<tuple<int, int>> _items;
     int _capacidad;
     int _cantidad_items;
@@ -26,6 +25,7 @@ public:
     int getCapacity() const;
     void addConflict(int item1, int item2);
     void removeConflict(int item1, int item2);
+    bool hasConflict(const Solution& S, int item);
     // Agregar los metodos que consideren necesarios, en particular para obtener los conflictos.
 
     KP01withCGInstance cargar_datos(const string& archivo);

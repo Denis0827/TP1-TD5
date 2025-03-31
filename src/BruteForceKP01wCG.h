@@ -7,8 +7,8 @@
 
 class BruteForceKP01wCG {
 private:
-    KP01withCGInstance in;
-
+    KP01withCGInstance _in;
+    Solution _B;
 
 
 public:
