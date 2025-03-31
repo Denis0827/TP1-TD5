@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iostream>
+using namespace std;
 
 class Solution {
 private:
@@ -11,12 +12,16 @@ private:
     int _cantidad_items;
 
 public:
-    Solution(int numItems); // Constructor to initialize size
+    // Constructor
+    Solution(int numItems); 
+    
+    // Modificadores
     void addItem(int item, int peso, int beneficio);
     void removeItem(int item);
+
+    // Otros métodos
     bool contains(int item) const;
     void printSolution() const;
-    // Pueden agregar los metodos que consideren necesarios.
 };
 
 #endif // SOLUTION_H

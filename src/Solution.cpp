@@ -18,12 +18,14 @@ bool Solution::contains(int item) const {
 }
 
 void Solution::printSolution() const {
-    for (const auto& par : mapa) {
-        cout << "Nodo: " << par.first 
-                  << ", Peso: " 
-                  << std::get<0>(par.second) << ", Beneficio: " 
-                  << std::get<1>(par.second) << 
-                  << std::endl;
+    auto it_itemsSol = this->_itemsSol.begin();
+    while (it_itemsSol != this->_itemsSol.end()) {
+        cout << "Nodo: " << it_itemsSol.first 
+             << ", Peso: " 
+             << get<0>(it_itemsSol.second) << ", Beneficio: " 
+             << get<1>(it_itemsSol.second) << "."
+             << endl;
+        ++it_itemsSol;
     }
 }
 

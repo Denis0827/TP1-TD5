@@ -1,6 +1,16 @@
 // BacktrackingKP01.cpp
 #include "BruteForceKP01wCG.h"
 
+void construir_arbol(vector<int> solucion_parcial, int n, int k) {
+    if (k == n) {
+        this->_arbol.append(actual);
+    } else {
+        construir_arbol(solucion_parcial, n, k + 1);
+        solucion_parcial.push_back(k); // agrego el elemento k-esimo del conjunto
+        construir_arbol(solucion_parcial, n, k + 1);
+    }
+}
+
 BruteForceKP01wCG::BruteForceKP01wCG() {
     _B = Solution(_in->_cantidad_itemss);  // Inicializamos la mejor solución como vacía
 }
