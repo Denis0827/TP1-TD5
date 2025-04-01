@@ -11,11 +11,12 @@ private:
     vector<tuple<int, int>> _items;
     int _capacidad;
     int _cantidad_items;
+    int _pesoTotal;
+    int _beneficioTotal;
 
     // Agregar el grafo de conflictos.
     vector<vector<bool>> _conflictos;
     int _cantidad_conflictos;
-
 
 public:
     // Constructor
@@ -26,6 +27,8 @@ public:
     int getProfit(int index) const;
     int getNumItems() const;
     int getCapacity() const;
+    int getWeightTotal() const;
+    int getProfitTotal() const;
 
     // Modificadores
     void cargar_datos(const string& archivo);
@@ -34,8 +37,7 @@ public:
     void removeConflict(int item1, int item2);
 
     // Otros métodos
-    bool hasConflict(int item) const;
-
+    bool hasConflict(vector<int> solution, int item) const;
 };
 
 #endif // KP01WITHCGINSTANCE_H

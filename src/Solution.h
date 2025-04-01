@@ -9,7 +9,10 @@ class Solution {
 private:
     // Definir estructura interna.
     map<int, tuple<int, int>> _itemsSol;
+    vector<int> _items;
     int _cantidad_items;
+    int _pesoTotal;
+    int _beneficioTotal;
 
 public:
     // Constructor
@@ -18,6 +21,11 @@ public:
     // Modificadores
     void addItem(int item, int peso, int beneficio);
     void removeItem(int item);
+
+    // Observadores
+    int getWeightTotal() const;
+    int getProfitTotal() const;
+    vector<int> getItems() const;
 
     // Otros métodos
     bool contains(int item) const;

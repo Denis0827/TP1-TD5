@@ -7,13 +7,12 @@
 
 class BruteForceKP01wCG {
 private:
-    KP01withCGInstance _in;
-    Solution _B;
-
+    KP01withCGInstance _instancia;
+    Solution _bestSol;
 
 public:
     BruteForceKP01wCG(const string& archivo);
-    Solution solve(const KP01withCGInstance& instance);
+    Solution solve();
 };
 
 #endif // BRUTEFORCEKP01WCG_H

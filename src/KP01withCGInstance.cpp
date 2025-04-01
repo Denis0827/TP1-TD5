@@ -1,6 +1,5 @@
 #include "KP01withCGInstance.h"
 
-
 KP01withCGInstance::KP01withCGInstance() {
     this->_capacidad = 0;
     this->_cantidad_items = 0;
@@ -11,6 +10,8 @@ KP01withCGInstance::KP01withCGInstance() {
 
 void KP01withCGInstance::setWeightProfit(int index, int weight, int profit) {
     this->_items[index] = tuple(weight, profit);
+    this->_pesoTotal += weight;
+    this->_beneficioTotal += profit;
 }
 
 int KP01withCGInstance::getWeight(int index) const {
@@ -29,6 +30,14 @@ int KP01withCGInstance::getCapacity() const {
     return this->_capacidad;
 }
 
+int KP01withCGInstance::getWeightTotal() const {
+    return this->_pesoTotal;
+}
+
+int KP01withCGInstance::getProfitTotal() const {
+    return this->_beneficioTotal;
+}
+
 void KP01withCGInstance::addConflict(int item1, int item2) {
     this->_conflictos[item1][item2] = true;
     this->_conflictos[item1][item2] = true;
@@ -39,9 +48,11 @@ void KP01withCGInstance::removeConflict(int item1, int item2) {
     this->_conflictos[item1][item2] = false;
 }
 
-bool KP01withCGInstance::hasConflict(int item) const {
-    for (int i = 0; i < this->_cantidad_items; i++){
-        if (this->_conflictos[item][i] == true) return true;
+bool KP01withCGInstance::hasConflict(vector<int> solution, int item) const {
+    for (int i = 0; i < solution.length(); i++) {
+        if (this->_conflictos[item][solution[i]] == true) {
+            return true;
+        }
     }
     return false;
 }

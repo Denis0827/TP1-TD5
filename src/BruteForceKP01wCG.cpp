@@ -1,49 +1,30 @@
 // BacktrackingKP01.cpp
 #include "BruteForceKP01wCG.h"
 
-void construir_arbol(vector<int> solucion_parcial, int n, int k) {
-    if (k == n) {
-        this->_arbol.append(actual);
-    } else {
-        construir_arbol(solucion_parcial, n, k + 1);
-        solucion_parcial.push_back(k); // agrego el elemento k-esimo del conjunto
-        construir_arbol(solucion_parcial, n, k + 1);
-    }
+BruteForceKP01wCG::BruteForceKP01wCG(const string& archivo) {
+    this->_instancia = KP01withCGInstance();
+    this->_instancia.cargar_datos(archivo);
+    this->_bestSol = Solution(this->_instancia.getNumItems());  
 }
 
-BruteForceKP01wCG::BruteForceKP01wCG() {
-    _B = Solution(_in->_cantidad_itemss);  // Inicializamos la mejor solución como vacía
+Solution BruteForceKP01wCG::solve() {
+    Mochila(this->_bestSol, 0);
+    return this->_bestSol;
 }
 
-
-Solution BruteForceKP01wCG::solve(const KP01withCGInstance& instance) {
-    // Creamos una solución vacía para empezar
-    Solution bestSolution(instance->_cantidad_itemss);
-    _in = instance;  // Asignar la instancia del problema a la variable interna
-
-    // Empezamos la recursión desde el primer ítem
-    Mochila(bestSolution, 0);
-
-    return bestSolution;  // Retornamos la mejor solución encontrada
-}
-
-// Método recursivo de fuerza bruta para explorar todas las combinaciones posibles
-void BruteForceKP01wCG::Mochila(Solution& S, int k) {
-    if (k == _in->_cantidad_itemss) {
-        // Si hemos considerado todos los ítems, evaluamos la solución
-        if (S.getWeight() <= _in.getCapacity() && S.getBenefit() > _B.getBenefit()) {
-            _B = S;  // Actualizamos la mejor solución con el objeto Solution S
+Solution Mochila(Solution S, int k) {
+    if (k == this->_instancia.getNumItems()) {
+        if (S.getWeightTotal() <= this->_instancia.getCapacity() && S.getProfitTotal() > this->_bestSol.getProfitTotal()) {
+            this->_bestSol = S;
+            return S;
         }
     } else {
-        // No tomar el ítem k si no tiene conflictos con los ítems ya seleccionados
-        if (!_in.hasConflict(S, k)) {  // Suponiendo que in tiene un método hasConflict()
-            // Tomar el ítem k (S[k] = 1)
-            S.addItem(k, _in.getWeight(k), _in.getProfit(k));  // Agregamos el ítem k a la solución
-            Mochila(S, k + 1);  // Recursión con el ítem incluido
-            S.removeItem(k);  // Deshacer la inclusión del ítem k
+        if (!this->_instancia.hasConflict(S.getItems(), k)) {
+            return Mochila(S, k + 1); 
+            S.addItem(k, this->_instancia.getWeight(k), this->_instancia.getProfit(k)); 
+            return Mochila(S, k + 1); 
+        } else {
+            return Mochila(S, k + 1);
         }
-
-        // No tomar el ítem k (S[k] = 0)
-        Mochila(S, k + 1);  // Recursión con el ítem no incluido
     }
 }
