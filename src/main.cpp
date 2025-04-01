@@ -7,21 +7,23 @@
 
 #include <iostream>
 
+using namespace std;
+
 int main(int argc, char* argv[]) {
     if (argc < 3) {
-        std::cerr << "Usage: " << argv[0] << " <algorithm> <instance>\n";
-        std::cerr << "Available algorithms: dp (Dynamic Programming), bt (Backtracking), bf (Brute Force)\n";
+        cerr << "Usage: " << argv[0] << " <algorithm> <instance>\n";
+        cerr << "Available algorithms: dp (Dynamic Programming), bt (Backtracking), bf (Brute Force)\n";
         return 1;
     }
 
-    std::string algorithm = argv[1];
-    std::string instance_name = argv[2];
+    string algorithm = argv[1];
+    string instance_name = argv[2];
 
-    KP01withCGInstance instance(0,0);
+    KP01withCGInstance instance;
 
 
-    std::cout << instance.getNumItems() << std::endl;
-    std::cout << instance.getCapacity() << std::endl;
+    cout << instance.getNumItems() << endl;
+    cout << instance.getCapacity() << endl;
 
     Solution solution(instance.getNumItems());
 
@@ -35,7 +37,7 @@ int main(int argc, char* argv[]) {
         BruteForceKP01wCG solver_bf;
         solution = solver_bf.solve(instance);
     } else {
-        std::cerr << "Unknown algorithm: " << algorithm << "\n";
+        cerr << "Unknown algorithm: " << algorithm << "\n";
         return 1;
     }
 

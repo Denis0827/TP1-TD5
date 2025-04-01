@@ -1,4 +1,7 @@
 #include "Solution.h"
+#include <iostream>
+#include <tuple>
+using namespace std;
 
 Solution::Solution(int numItems) {
     this->_itemsSol;
@@ -9,15 +12,16 @@ Solution::Solution(int numItems) {
 }
 
 void Solution::addItem(int item, int peso, int beneficio) {
-    this->_itemsSol[item] = tuple(peso, beneficio);
+
+    this->_itemsSol[item] = make_tuple(peso, beneficio);
     this->_beneficioTotal += beneficio;
     this->_pesoTotal += peso;
     this->_items.push_back(item);
 }
 
 void Solution::removeItem(int item) {
-    int peso = get<0>(this->_itemsSol[item].second);
-    int beneficio = get<1>(this->_itemsSol[item].second);
+    int peso = get<0>(this->_itemsSol[item]);
+    int beneficio = get<1>(this->_itemsSol[item]);
     this->_itemsSol.erase(item);
     this->_pesoTotal -= peso;
     this->_beneficioTotal -= beneficio;

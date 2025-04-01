@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <iostream>
+#include <map>
+#include <tuple>
 using namespace std;
 
 class Solution {

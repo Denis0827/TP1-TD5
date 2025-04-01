@@ -1,8 +1,11 @@
 // KP01withCGInstance.h
 #ifndef KP01WITHCGINSTANCE_H
 #define KP01WITHCGINSTANCE_H
+#include <vector>
+#include <string>
+#include <tuple>
 
-#include "Graph.h"
+
 using namespace std;
 
 class KP01withCGInstance {

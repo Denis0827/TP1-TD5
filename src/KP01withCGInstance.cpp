@@ -1,4 +1,9 @@
 #include "KP01withCGInstance.h"
+#include <tuple>
+#include <string>
+#include <iostream>
+#include <fstream>
+using namespace std;
 
 KP01withCGInstance::KP01withCGInstance() {
     this->_capacidad = 0;
@@ -9,7 +14,7 @@ KP01withCGInstance::KP01withCGInstance() {
 }
 
 void KP01withCGInstance::setWeightProfit(int index, int weight, int profit) {
-    this->_items[index] = tuple(weight, profit);
+    this->_items[index] = make_tuple(weight, profit);
     this->_pesoTotal += weight;
     this->_beneficioTotal += profit;
 }
@@ -49,7 +54,7 @@ void KP01withCGInstance::removeConflict(int item1, int item2) {
 }
 
 bool KP01withCGInstance::hasConflict(vector<int> solution, int item) const {
-    for (int i = 0; i < solution.length(); i++) {
+    for (int i = 0; i < solution.size(); i++) {
         if (this->_conflictos[item][solution[i]] == true) {
             return true;
         }
@@ -76,7 +81,7 @@ void KP01withCGInstance::cargar_datos(const string& archivo) {
     // Inicializar las variables de la clase
     this->_items;  // Crear un vector de tuplas (peso, beneficio)
     for (int i = 0; i < this->_cantidad_items; i++) {
-        this->_items.push_back(tuple(0, 0));
+        this->_items.push_back(make_tuple(0, 0));
     }
 
     vector<int> pesos;
@@ -94,7 +99,7 @@ void KP01withCGInstance::cargar_datos(const string& archivo) {
     }
 
     // Inicializar la matriz de conflictos
-    this->_conflictos = vector<vector<bool>>(n, vector<bool>(n, false));
+    this->_conflictos = vector<vector<bool>>(this->_cantidad_items, vector<bool>(this->_cantidad_items, false));
 
     // Leer la quinta línea: número de pares de conflictos
     getline(file, line);
