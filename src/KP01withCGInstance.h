@@ -4,8 +4,6 @@
 #include <vector>
 #include <string>
 #include <tuple>
-
-
 using namespace std;
 
 class KP01withCGInstance {

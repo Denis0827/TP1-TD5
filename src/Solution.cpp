@@ -49,18 +49,18 @@ vector<int> Solution::getItems() const {
 }
 
 bool Solution::contains(int item) const {
-    return this->_itemsSol.find(item);
+    auto it = this->_itemsSol.find(item);
+    return it != this->_itemsSol.end();
 }
 
 void Solution::printSolution() const {
     auto it_itemsSol = this->_itemsSol.begin();
     while (it_itemsSol != this->_itemsSol.end()) {
-        cout << "Nodo: " << it_itemsSol.first 
+        cout << "Nodo: " << it_itemsSol->first 
              << ", Peso: " 
-             << get<0>(it_itemsSol.second) << ", Beneficio: " 
-             << get<1>(it_itemsSol.second) << "."
+             << get<0>(it_itemsSol->second) << ", Beneficio: " 
+             << get<1>(it_itemsSol->second) << "."
              << endl;
         ++it_itemsSol;
     }
 }
-

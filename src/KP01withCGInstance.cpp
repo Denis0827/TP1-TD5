@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <filesystem>
 using namespace std;
 
 KP01withCGInstance::KP01withCGInstance() {
@@ -122,4 +123,8 @@ void KP01withCGInstance::cargar_datos(const string& archivo) {
     file.close();  // Cerrar el archivo después de leerlo
 }
 
-
+int main() {
+    KP01withCGInstance instancia = KP01withCGInstance();
+    instancia.cargar_datos("./instances/mochila_chica_n10_no_conflict.txt");
+    cout << instancia.getCapacity() << endl;
+}
