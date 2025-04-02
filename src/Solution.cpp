@@ -37,11 +37,11 @@ void Solution::removeItem(int item) {
     }
 }
 
-int Solution::getWeightTotal() const {
+int Solution::getWeightSolution() const {
     return this->_pesoTotal;
 }
 
-int Solution::getProfitTotal() const {
+int Solution::getProfitSolution() const {
     return this->_beneficioTotal;
 }
 

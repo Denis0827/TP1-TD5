@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
     cout << instance.getNumItems() << endl;
     cout << instance.getCapacity() << endl;
 
-    Solution solution(instance.getNumItems());
+    Solution solution = Solution();
 
     if (algorithm == "dp") {
         DynamicProgrammingKP01 solver_dp;

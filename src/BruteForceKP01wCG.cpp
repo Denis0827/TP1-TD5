@@ -10,7 +10,7 @@ BruteForceKP01wCG::BruteForceKP01wCG(const string& archivo) {
 }
 
 Solution BruteForceKP01wCG::solve() {
-    Mochila(this->_bestSol, 0);
+    Mochila_FB(this->_bestSol, 0);
     return this->_bestSol;
 }
 

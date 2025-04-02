@@ -25,8 +25,8 @@ public:
     void removeItem(int item);
 
     // Observadores
-    int getWeightTotal() const;
-    int getProfitTotal() const;
+    int getWeightSolution() const;
+    int getProfitSolution() const;
     vector<int> getItems() const;
 
     // Otros métodos

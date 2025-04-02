@@ -10,18 +10,18 @@ private:
     KP01withCGInstance _instancia;
     Solution _bestSol;
 
-    void Mochila(Solution S, int k) {
+    void Mochila_FB(Solution S, int k) {
         if (k == this->_instancia.getNumItems()) {
-            if (S.getWeightTotal() <= this->_instancia.getCapacity() && S.getProfitTotal() > this->_bestSol.getProfitTotal()) {
+            if (S.getWeightSolution() <= this->_instancia.getCapacity() && S.getProfitSolution() > this->_bestSol.getProfitSolution()) {
                 this->_bestSol = S;
             } 
         } else {
             if (!this->_instancia.hasConflict(S.getItems(), k)) {
-                Mochila(S, k + 1); 
+                Mochila_FB(S, k + 1); 
                 S.addItem(k, this->_instancia.getWeight(k), this->_instancia.getProfit(k)); 
-                Mochila(S, k + 1); 
+                Mochila_FB(S, k + 1); 
             } else {
-                Mochila(S, k + 1);
+                Mochila_FB(S, k + 1);
             }
         }
     };
