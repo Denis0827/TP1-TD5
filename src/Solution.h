@@ -18,7 +18,7 @@ private:
 
 public:
     // Constructor
-    Solution(int numItems); 
+    Solution(); 
     
     // Modificadores
     void addItem(int item, int peso, int beneficio);

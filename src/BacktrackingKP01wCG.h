@@ -5,6 +5,7 @@
 #include "Solution.h"
 #include "KP01withCGInstance.h"
 
+
 class BacktrackingKP01wCG {
 private:
 

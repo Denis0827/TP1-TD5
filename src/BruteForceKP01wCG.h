@@ -14,8 +14,7 @@ private:
         if (k == this->_instancia.getNumItems()) {
             if (S.getWeightTotal() <= this->_instancia.getCapacity() && S.getProfitTotal() > this->_bestSol.getProfitTotal()) {
                 this->_bestSol = S;
-                return S;
-            }
+            } return S;
         } else {
             if (!this->_instancia.hasConflict(S.getItems(), k)) {
                 return Mochila(S, k + 1); 
@@ -25,7 +24,7 @@ private:
                 return Mochila(S, k + 1);
             }
         }
-    }
+    };
 
 public:
     BruteForceKP01wCG(const string& archivo);

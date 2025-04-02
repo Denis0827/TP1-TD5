@@ -3,20 +3,20 @@
 #include <tuple>
 using namespace std;
 
-Solution::Solution(int numItems) {
+Solution::Solution() {
     this->_itemsSol;
-    this->_cantidad_items = numItems;
+    this->_cantidad_items;
     this->_items;
     this->_pesoTotal = 0;
     this->_beneficioTotal = 0;
 }
 
 void Solution::addItem(int item, int peso, int beneficio) {
-
     this->_itemsSol[item] = make_tuple(peso, beneficio);
     this->_beneficioTotal += beneficio;
     this->_pesoTotal += peso;
     this->_items.push_back(item);
+    this->_cantidad_items += 1;
 }
 
 void Solution::removeItem(int item) {
@@ -25,6 +25,7 @@ void Solution::removeItem(int item) {
     this->_itemsSol.erase(item);
     this->_pesoTotal -= peso;
     this->_beneficioTotal -= beneficio;
+    this->_cantidad_items -= 1;
 
     auto it = this->_items.begin();
     while (it != this->_items.end()) {
