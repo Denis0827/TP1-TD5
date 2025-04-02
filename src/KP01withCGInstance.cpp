@@ -46,12 +46,12 @@ int KP01withCGInstance::getProfitTotal() const {
 
 void KP01withCGInstance::addConflict(int item1, int item2) {
     this->_conflictos[item1][item2] = true;
-    this->_conflictos[item1][item2] = true;
+    this->_conflictos[item2][item1] = true;
 }
 
 void KP01withCGInstance::removeConflict(int item1, int item2) {
     this->_conflictos[item1][item2] = false;
-    this->_conflictos[item1][item2] = false;
+    this->_conflictos[item2][item1] = false;
 }
 
 bool KP01withCGInstance::hasConflict(vector<int> solution, int item) const {
@@ -64,7 +64,7 @@ bool KP01withCGInstance::hasConflict(vector<int> solution, int item) const {
 }
 
 void KP01withCGInstance::cargar_datos(const string& archivo) {
-    ifstream file(archivo);  // Abrir el archivo de entrada
+    ifstream file(archivo); 
     if (!file.is_open()) {
         cerr << "No se pudo abrir el archivo " << archivo << endl;
     }
@@ -79,21 +79,34 @@ void KP01withCGInstance::cargar_datos(const string& archivo) {
     getline(file, line);
     this->_capacidad = stoi(line);
 
-    // Inicializar las variables de la clase
-    this->_items;  // Crear un vector de tuplas (peso, beneficio)
+    this->_items;  
     for (int i = 0; i < this->_cantidad_items; i++) {
         this->_items.push_back(make_tuple(0, 0));
     }
 
-    vector<int> pesos;
-    while (getline(file, line), ' ') {
-        pesos.push_back(stoi(line));
+    vector<int> pesos; string elem_p;
+    getline(file, line);
+    for (int i = 0; i < line.length(); i++) {
+        if (line[i] != ' ') {
+            elem_p += line[i];
+        } else {
+            pesos.push_back(stoi(elem_p));
+            elem_p = "";
+        }
     }
+    pesos.push_back(stoi(elem_p));
 
-    vector<int> beneficios;
-    while (getline(file, line), ' ') {
-        pesos.push_back(stoi(line));
+    vector<int> beneficios; string elem_b;
+    getline(file, line);
+    for (int i = 0; i < line.length(); i++) {
+        if (line[i] != ' ') {
+            elem_b += line[i];
+        } else {
+            beneficios.push_back(stoi(elem_b));
+            elem_b = "";
+        }
     }
+    beneficios.push_back(stoi(elem_b));
 
     for (int i = 0; i < this->_cantidad_items; i++) {
         setWeightProfit(i, pesos[i], beneficios[i]);
@@ -109,22 +122,17 @@ void KP01withCGInstance::cargar_datos(const string& archivo) {
     // Leer las siguientes m líneas para los pares de conflictos
     string n1; string n2; int j;
     for (int i = 0; i < this->_cantidad_conflictos; i++) {
+        n1 = ""; n2 = "";
         getline(file, line); j = 0;
         while (line[j] != ' ') {
             n1 += line[j];
             j++;
         } 
         for (int k = j + 1; k < line.length(); k++) {
-            n2 += line[j];
+            n2 += line[k];
         }
         addConflict(stoi(n1), stoi(n2));
     }
 
-    file.close();  // Cerrar el archivo después de leerlo
-}
-
-int main() {
-    KP01withCGInstance instancia = KP01withCGInstance();
-    instancia.cargar_datos("./instances/mochila_chica_n10_no_conflict.txt");
-    cout << instancia.getCapacity() << endl;
+    file.close();  
 }
