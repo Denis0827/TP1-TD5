@@ -57,7 +57,7 @@ bool Solution::contains(int item) const {
 void Solution::printSolution() const {
     auto it_itemsSol = this->_itemsSol.begin();
     while (it_itemsSol != this->_itemsSol.end()) {
-        cout << "Nodo: " << it_itemsSol->first 
+        cout << "Item: " << it_itemsSol->first 
              << ", Peso: " 
              << get<0>(it_itemsSol->second) << ", Beneficio: " 
              << get<1>(it_itemsSol->second) << "."
