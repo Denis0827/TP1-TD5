@@ -1,107 +1,142 @@
 class Item:
-    def __init__(self, peso, beneficio):
+    def __init__(self, peso, beneficio, indice):
         self.peso = peso
         self.beneficio = beneficio
+        self.indice = indice
 
     def __repr__(self):
-        return f"Item(peso={self.peso}, beneficio={self.beneficio})"
+        return f"Item: {self.indice}, Peso: {self.peso}, Beneficio: {self.beneficio}"
+
+
+class MatrizConflictos:
+    def __init__(self, cantidad_items):
+        self.n = cantidad_items
+        self.matriz = [[False] * self.n for _ in range(self.n)]
+
+    def agregar_conflicto(self, i, j):
+        self.matriz[i][j] = True
+        self.matriz[j][i] = True  # no dirigido
+
+    def hay_conflicto(self, i, j):
+        return self.matriz[i][j]
 
 
 class InstanciaMochila:
     def __init__(self, archivo):
         with open(archivo, 'r') as f:
-            lineas = [line.strip() for line in f.readlines()]
+            self.n = int(f.readline())
+            self.capacidad = int(f.readline())
+            pesos = list(map(int, f.readline().split()))
+            beneficios = list(map(int, f.readline().split()))
+            linea = f.readline().strip()
 
-        self.n = int(lineas[0])
-        self.capacidad = int(lineas[1])
-        pesos = list(map(int, lineas[2].split()))
-        beneficios = list(map(int, lineas[3].split()))
-        self.items = [Item(p, b) for p, b in zip(pesos, beneficios)]
+            self.items = [Item(pesos[i], beneficios[i], i) for i in range(self.n)]
 
-    def __repr__(self):
-        return f"InstanciaMochila(n={self.n}, capacidad={self.capacidad}, items={self.items})"
+            if linea == '0':
+                self.conflictos = None
+            else:
+                cantidad_conflictos = int(linea)
+                self.conflictos = MatrizConflictos(self.n)
+                for _ in range(cantidad_conflictos):
+                    i, j = map(int, f.readline().split())
+                    self.conflictos.agregar_conflicto(i, j)
 
 
 class SolucionMochila:
     def __init__(self):
-        self.items_seleccionados = []
-        self.beneficio_total = 0
-        self.peso_total = 0
+        self.items = []
+        self.total_peso = 0
+        self.total_beneficio = 0
 
-    def agregar_item(self, item):
-        self.items_seleccionados.append(item)
-        self.beneficio_total += item.beneficio
-        self.peso_total += item.peso
+    def agregar(self, item):
+        self.items.append(item)
+        self.total_peso += item.peso
+        self.total_beneficio += item.beneficio
+
+    def remover(self, item):
+        self.items.remove(item)
+        self.total_peso -= item.peso
+        self.total_beneficio -= item.beneficio
+
+    def indices_seleccionados(self):
+        return [item.indice for item in self.items]
 
     def __repr__(self):
-        return (f"SolucionMochila(peso_total={self.peso_total}, beneficio_total={self.beneficio_total}, "
-                f"items_seleccionados={self.items_seleccionados})")
+        return "\n".join(
+            [f"Item: {item.indice}, Peso: {item.peso}, Beneficio: {item.beneficio}" for item in self.items]
+        )
 
-
-# Backtracking
-
-def mochila_backtracking(instancia):
+def mochila_backtracking_con_conflictos(instancia):
     mejor_solucion = SolucionMochila()
+
+    def es_compatible(item, items_seleccionados):
+        if instancia.conflictos is None:
+            return True
+        for otro in items_seleccionados:
+            if instancia.conflictos.hay_conflicto(item.indice, otro.indice):
+                return False
+        return True
 
     def backtrack(i, solucion_actual):
         nonlocal mejor_solucion
-
-        if i == instancia.n:
-            if solucion_actual.beneficio_total > mejor_solucion.beneficio_total:
+        if i == len(instancia.items):
+            if solucion_actual.total_beneficio > mejor_solucion.total_beneficio:
                 mejor_solucion = SolucionMochila()
-                mejor_solucion.items_seleccionados = solucion_actual.items_seleccionados[:]
-                mejor_solucion.beneficio_total = solucion_actual.beneficio_total
-                mejor_solucion.peso_total = solucion_actual.peso_total
+                mejor_solucion.items = solucion_actual.items.copy()
+                mejor_solucion.total_peso = solucion_actual.total_peso
+                mejor_solucion.total_beneficio = solucion_actual.total_beneficio
             return
 
-        # Omitir el ítem i
-        backtrack(i + 1, solucion_actual)
-
-        # Incluir el ítem i si cabe
         item = instancia.items[i]
-        if solucion_actual.peso_total + item.peso <= instancia.capacidad:
-            solucion_actual.agregar_item(item)
+
+        # Opción 1: tomar el ítem si cabe y no hay conflicto
+        if (
+            solucion_actual.total_peso + item.peso <= instancia.capacidad
+            and es_compatible(item, solucion_actual.items)
+        ):
+            solucion_actual.agregar(item)
             backtrack(i + 1, solucion_actual)
-            # Deshacer
-            solucion_actual.items_seleccionados.pop()
-            solucion_actual.beneficio_total -= item.beneficio
-            solucion_actual.peso_total -= item.peso
+            solucion_actual.remover(item)
+
+        # Opción 2: no tomarlo
+        backtrack(i + 1, solucion_actual)
 
     backtrack(0, SolucionMochila())
     return mejor_solucion
 
-
-# Programación Dinámica
-
-def mochila_dinamica(instancia):
+def mochila_dp(instancia):
     n = instancia.n
     C = instancia.capacidad
     dp = [[0] * (C + 1) for _ in range(n + 1)]
 
     for i in range(1, n + 1):
-        for w in range(C + 1):
-            if instancia.items[i - 1].peso <= w:
-                dp[i][w] = max(dp[i - 1][w], dp[i - 1][w - instancia.items[i - 1].peso] + instancia.items[i - 1].beneficio)
+        peso = instancia.items[i - 1].peso
+        beneficio = instancia.items[i - 1].beneficio
+        for c in range(C + 1):
+            if peso <= c:
+                dp[i][c] = max(dp[i - 1][c], dp[i - 1][c - peso] + beneficio)
             else:
-                dp[i][w] = dp[i - 1][w]
+                dp[i][c] = dp[i - 1][c]
 
-    # reconstruir solución
+    # reconstrucción de la solución
+    c = C
     solucion = SolucionMochila()
-    w = C
     for i in range(n, 0, -1):
-        if dp[i][w] != dp[i - 1][w]:
+        if dp[i][c] != dp[i - 1][c]:
             item = instancia.items[i - 1]
-            solucion.agregar_item(item)
-            w -= item.peso
+            solucion.agregar(item)
+            c -= item.peso
 
     return solucion
 
+if __name__ == "__main__":
+    instancia = InstanciaMochila("costo_peso_correlaciona_n20_cycle.txt")
 
-# Ejemplo de uso:
-instancia = InstanciaMochila("mochila_chica_n10_no_conflict.txt")
-print(instancia)
-solucion_bt = mochila_backtracking(instancia)
-print("Backtracking:", solucion_bt)
-solucion_dp = mochila_dinamica(instancia)
-print("Programación Dinámica:", solucion_dp)
+    print("Backtracking con conflictos:")
+    print(mochila_backtracking_con_conflictos(instancia))
 
+    if instancia.conflictos is None:
+        print("\nProgramación Dinámica (sin conflictos):")
+        print(mochila_dp(instancia))
+    else:
+        print("\nProgramación Dinámica no ejecutada porque hay conflictos entre ítems.")
