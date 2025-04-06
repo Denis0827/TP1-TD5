@@ -12,8 +12,8 @@ private:
 
 public:
     DynamicProgrammingKP01(const string& archivo);
+    vector<vector<int>> _matriz_optima();
     Solution solve();
-    vector<vector<int>> valor_optimo();
 };
 
 #endif // DYNAMICPROGRAMMINGKP01_H
