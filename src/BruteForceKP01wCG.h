@@ -11,20 +11,23 @@ private:
     Solution _bestSol;
 
     void Mochila_FB(Solution S, int k) {
-        if (k == this->_instancia.getNumItems()) {
-            if (S.getWeightSolution() <= this->_instancia.getCapacity() && S.getProfitSolution() > this->_bestSol.getProfitSolution()) {
-                this->_bestSol = S;
+        if (k == this->_instancia.getNumItems()) { // O(1)
+            if (S.getWeightSolution() <= this->_instancia.getCapacity() 
+                && S.getProfitSolution() > this->_bestSol.getProfitSolution()) { // O(1)
+                this->_bestSol = S; // O(1)
             } 
         } else {
-            if (!this->_instancia.hasConflict(S.getItems(), k)) {
-                Mochila_FB(S, k + 1); 
-                S.addItem(k, this->_instancia.getWeight(k), this->_instancia.getProfit(k)); 
-                Mochila_FB(S, k + 1); 
+            if (!this->_instancia.hasConflict(S.getItems(), k)) { // O(S)
+                Mochila_FB(S, k + 1); // O(2^N/2)
+                S.addItem(k, this->_instancia.getWeight(k), this->_instancia.getProfit(k)); // O(log(N))
+                Mochila_FB(S, k + 1); // O(2^N/2)
             } else {
-                Mochila_FB(S, k + 1);
+                Mochila_FB(S, k + 1); // O(2^N/2)
             }
         }
     };
+
+    // Complejidad: O(2^N*(log(N)))
 
 public:
     BruteForceKP01wCG(const string& archivo);

@@ -13,7 +13,7 @@ Solution BacktrackingKP01wCG::solve() {
 }
 
 int main() {
-    BacktrackingKP01wCG FB = BacktrackingKP01wCG("mochila_chica_n10_no_conflict.txt");
+    BacktrackingKP01wCG FB = BacktrackingKP01wCG("mochila_chica_n30_no_conflict.txt");
     Solution S = FB.solve();
     S.printSolution();
     return 0;

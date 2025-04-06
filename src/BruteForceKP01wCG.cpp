@@ -15,7 +15,7 @@ Solution BruteForceKP01wCG::solve() {
 }
 
 int main() {
-    BruteForceKP01wCG FB = BruteForceKP01wCG("mochila_chica_n10_no_conflict.txt");
+    BruteForceKP01wCG FB = BruteForceKP01wCG("mochila_chica_n40_no_conflict.txt");
     Solution S = FB.solve();
     S.printSolution();
     return 0;

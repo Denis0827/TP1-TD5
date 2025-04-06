@@ -11,30 +11,34 @@ private:
     Solution _bestSol;
     
     int beneficio_restante(KP01withCGInstance instancia, int k, int n) {
-        int suma = 0;
-        for (int i = k; i < n; i++){
-            suma += instancia.getProfit(i); 
+        int suma = 0; // O(1)
+        for (int i = k; i < n; i++) { // O(R) con R = cantidad de items restantes a partir de k
+            suma += instancia.getProfit(i); // O(1)
         }
-        return suma;
+        return suma; // O(1)
     }
 
     void Mochila_BT(Solution S, int k) {
-        if (k == this->_instancia.getNumItems()) {
-            if (S.getWeightSolution() <= this->_instancia.getCapacity() && S.getProfitSolution() > this->_bestSol.getProfitSolution()) {
-                this->_bestSol = S;
+        if (k == this->_instancia.getNumItems()) { // O(1)
+            if (S.getWeightSolution() <= this->_instancia.getCapacity() 
+                && S.getProfitSolution() > this->_bestSol.getProfitSolution()) { // O(1)
+                this->_bestSol = S; // O(1)
             } 
         } else {
-            if ((S.getWeightSolution() <= this->_instancia.getCapacity()) && // poda por factibilidad
-                (S.getProfitSolution() + beneficio_restante(this->_instancia, k, this->_instancia.getNumItems()) > this->_bestSol.getProfitSolution()) && // poda por optimalidad
-                (!this->_instancia.hasConflict(S.getItems(), k))) { // grafo de conflictos
-                Mochila_BT(S, k + 1); 
-                S.addItem(k, this->_instancia.getWeight(k), this->_instancia.getProfit(k)); 
-                Mochila_BT(S, k + 1); 
+            if ((S.getWeightSolution() <= this->_instancia.getCapacity()) && // poda por factibilidad, O(1)
+                (S.getProfitSolution() + beneficio_restante(this->_instancia, k, this->_instancia.getNumItems()) 
+                    > this->_bestSol.getProfitSolution()) && // poda por optimalidad, O(R)
+                (!this->_instancia.hasConflict(S.getItems(), k))) { // grafo de conflictos, O(S)
+                Mochila_BT(S, k + 1); // O(2^N/2)
+                S.addItem(k, this->_instancia.getWeight(k), this->_instancia.getProfit(k)); // O(log(N))
+                Mochila_BT(S, k + 1); // O(2^N/2)
             } else {
-                Mochila_BT(S, k + 1);
+                Mochila_BT(S, k + 1); // O(2^N/2)
             }
         }
     };
+
+    // Complejidad: O(2^N*(log(N)+R))
 
 public:
     BacktrackingKP01wCG(const string& archivo);

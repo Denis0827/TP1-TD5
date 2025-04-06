@@ -21,24 +21,30 @@ private:
 
 public:
     // Constructor
-    KP01withCGInstance();
+    KP01withCGInstance(); // O(1)
 
     // Observadores
-    int getWeight(int index) const;
-    int getProfit(int index) const;
-    int getNumItems() const;
-    int getCapacity() const;
-    int getWeightTotal() const;
-    int getProfitTotal() const;
+    int getWeight(int index) const; // O(1)
+    // Pre: index < this->_cantidad_items
+    int getProfit(int index) const; // O(1)
+    // Pre: index < this->_cantidad_items
+    int getNumItems() const; // O(1)
+    int getCapacity() const; // O(1)
+    int getWeightTotal() const; // O(1)
+    int getProfitTotal() const; // O(1)
 
     // Modificadores
-    void cargar_datos(const string& archivo);
-    void setWeightProfit(int index, int weight, int profit);
-    void addConflict(int item1, int item2);
-    void removeConflict(int item1, int item2);
+    void cargar_datos(const string& archivo); // O(N^2 + C)
+    void setWeightProfit(int index, int weight, int profit); // O(1)
+    // Pre: index < this->_cantidad_items
+    void addConflict(int item1, int item2); // O(1)
+    // Pre: item1 < this->_cantidad_items && item2 < this->_cantidad_items
+    void removeConflict(int item1, int item2); // O(1)
+    // Pre: item1 < this->_cantidad_items && item2 < this->_cantidad_items
 
     // Otros métodos
-    bool hasConflict(vector<int> solution, int item) const;
+    bool hasConflict(vector<int> solution, int item) const; // O(S)
+    // Pre: item < this->_cantidad_items
 };
 
 #endif // KP01WITHCGINSTANCE_H

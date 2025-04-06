@@ -18,20 +18,21 @@ private:
 
 public:
     // Constructor
-    Solution(); 
+    Solution(); // O(1)
     
     // Modificadores
-    void addItem(int item, int peso, int beneficio);
-    void removeItem(int item);
+    void addItem(int item, int peso, int beneficio); // O(log(N))
+    void removeItem(int item); // O(N) por ahora
+    // Pre: item tiene que estar en el conjunto de _itemsSol y _items
 
     // Observadores
-    int getWeightSolution() const;
-    int getProfitSolution() const;
-    vector<int> getItems() const;
+    int getWeightSolution() const; // O(1)
+    int getProfitSolution() const; // O(1)
+    vector<int> getItems() const; // O(1)
 
     // Otros métodos
-    bool contains(int item) const;
-    void printSolution() const;
+    bool contains(int item) const; // O(log(N))
+    void printSolution() const; // O(N)
 };
 
 #endif // SOLUTION_H
