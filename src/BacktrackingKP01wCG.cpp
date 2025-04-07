@@ -1,5 +1,6 @@
 // BacktrackingKP01.cpp
 #include "BacktrackingKP01wCG.h"
+#include <chrono>
 
 BacktrackingKP01wCG::BacktrackingKP01wCG(const string& archivo) {
     this->_instancia = KP01withCGInstance();
@@ -12,9 +13,20 @@ Solution BacktrackingKP01wCG::solve() {
     return this->_bestSol;
 }
 
+
 int main() {
-    BacktrackingKP01wCG BT = BacktrackingKP01wCG("mochila_chica_n30_no_conflict.txt");
+    auto start = std::chrono::high_resolution_clock::now();
+
+    BacktrackingKP01wCG BT = BacktrackingKP01wCG("costo_peso_correlaciona_n20_cycle.txt");
     Solution S = BT.solve();
     S.printSolution();
+
+    auto end = std::chrono::high_resolution_clock::now();
+
+    std::chrono::duration<double> elapsed = end - start;
+    std::cout << "Tiempo de ejecución: " << elapsed.count() << " segundos\n";
+
     return 0;
 }
+    
+    

@@ -4,6 +4,7 @@
 
 #include "Solution.h"
 #include "KP01withCGInstance.h"
+#include "Cancelador.hpp"
 
 class BacktrackingKP01wCG {
 private:
@@ -19,6 +20,7 @@ private:
     }
 
     void Mochila_BT(Solution S, int k) {
+
         if (k == this->_instancia.getNumItems()) { // O(1)
             if (S.getWeightSolution() <= this->_instancia.getCapacity() 
                 && S.getProfitSolution() > this->_bestSol.getProfitSolution()) { // O(1)

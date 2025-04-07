@@ -2,6 +2,7 @@
 #include "KP01withCGInstance.h"
 #include "DynamicProgrammingKP01.h"
 #include <vector>
+#include <chrono>
 #include <algorithm>
 
 DynamicProgrammingKP01::DynamicProgrammingKP01(const string& archivo) {
@@ -27,15 +28,15 @@ vector<vector<int>> DynamicProgrammingKP01::matriz_optima() {
 
     for (int k = 1; k <= this->_instancia.getNumItems(); k++){
         for (int c = 1; c <= this->_instancia.getCapacity(); c++){
-            if (this->_instancia.getWeight(k) > c){
+            if (this->_instancia.getWeight(k - 1) > c){
                 m[k][c] = m[k-1][c];
             }
             else {
-                if (m[k - 1][c] > this->_instancia.getProfit(k) + m[k - 1][c - this->_instancia.getWeight(k)]){
+                if (m[k - 1][c] > this->_instancia.getProfit(k - 1) + m[k - 1][c - this->_instancia.getWeight(k - 1)]){
                     m[k][c] = m[k - 1][c];
                 }
                 else {
-                    m[k][c] = this->_instancia.getProfit(k) + m[k - 1][c - this->_instancia.getWeight(k)];
+                    m[k][c] = this->_instancia.getProfit(k - 1) + m[k - 1][c - this->_instancia.getWeight(k - 1)];
                 }
             }
         }   
@@ -44,22 +45,41 @@ vector<vector<int>> DynamicProgrammingKP01::matriz_optima() {
     return m;
 }
 
+Solution DynamicProgrammingKP01::solve() {
+    vector<vector<int>> m = matriz_optima();
+    int k = this->_instancia.getNumItems();
+    int c = this->_instancia.getCapacity();
+    Solution S = Solution();
 
+    while (k != 0 && c != 0) {
+        if (m[k][c] != m[k-1][c] &&
+            m[k][c] == m[k-1][c - this->_instancia.getWeight(k-1)] + this->_instancia.getProfit(k-1)) {
+            S.addItem(k-1, this->_instancia.getWeight(k-1), this->_instancia.getProfit(k-1));
+            c -= this->_instancia.getWeight(k-1);
+        }
+        k--;
+    }
+
+    return S;
+}
 
 
 int main() {
-    DynamicProgrammingKP01 PD = DynamicProgrammingKP01("mochila_chica_n10_no_conflict.txt");
-    vector<vector<int>> matriz = PD.valor_optimo();
+    
+    auto start = std::chrono::high_resolution_clock::now();
 
-    for (const auto& fila : matriz) {
-        for (const auto& valor : fila) {
-            std::cout << valor << " ";
-        }
-        std::cout << std::endl;
-    }
+    DynamicProgrammingKP01 PD = DynamicProgrammingKP01("mochila_chica_n30_no_conflict.txt");
+    Solution S = PD.solve();
+    S.printSolution();
+
+    auto end = std::chrono::high_resolution_clock::now();
+
+    std::chrono::duration<double> elapsed = end - start;
+    std::cout << "Tiempo de ejecución: " << elapsed.count() << " segundos\n";
 
     return 0;
 }
+    
 
 
 

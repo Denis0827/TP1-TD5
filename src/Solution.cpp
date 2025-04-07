@@ -57,7 +57,6 @@ bool Solution::contains(int item) const {
 
 void Solution::printSolution() const {
     auto it_itemsSol = this->_itemsSol.begin(); // O(1)
-    /*
     while (it_itemsSol != this->_itemsSol.end()) { // O(N)
         cout << "Item: " << it_itemsSol->first  // O(1)
              << ", Peso: " 
@@ -66,7 +65,4 @@ void Solution::printSolution() const {
              << endl; // O(1)
         ++it_itemsSol; // O(1)    
     }
-    */
-    
-    cout << this->_beneficioTotal << endl;
 }

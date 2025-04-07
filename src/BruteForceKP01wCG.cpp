@@ -1,6 +1,7 @@
 #include "BruteForceKP01wCG.h"
 #include "Solution.h"
 #include "KP01withCGInstance.h"
+#include <chrono>
 using namespace std;
 
 BruteForceKP01wCG::BruteForceKP01wCG(const string& archivo) {
@@ -14,9 +15,18 @@ Solution BruteForceKP01wCG::solve() {
     return this->_bestSol;
 }
 
+
 int main() {
-    BruteForceKP01wCG FB = BruteForceKP01wCG("mochila_chica_n40_no_conflict.txt");
+    auto start = std::chrono::high_resolution_clock::now();
+
+    BruteForceKP01wCG FB = BruteForceKP01wCG("costo_peso_correlaciona_n20_cycle.txt");
     Solution S = FB.solve();
     S.printSolution();
+
+    auto end = std::chrono::high_resolution_clock::now();
+
+    std::chrono::duration<double> elapsed = end - start;
+    std::cout << "Tiempo de ejecución: " << elapsed.count() << " segundos\n";
+
     return 0;
 }

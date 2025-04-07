@@ -4,6 +4,7 @@
 
 #include "Solution.h"
 #include "KP01withCGInstance.h"
+#include "Cancelador.hpp"
 
 class BruteForceKP01wCG {
 private:
@@ -11,6 +12,7 @@ private:
     Solution _bestSol;
 
     void Mochila_FB(Solution S, int k) {
+
         if (k == this->_instancia.getNumItems()) { // O(1)
             if (S.getWeightSolution() <= this->_instancia.getCapacity() 
                 && S.getProfitSolution() > this->_bestSol.getProfitSolution()) { // O(1)

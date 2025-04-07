@@ -12,7 +12,7 @@ private:
 
 public:
     DynamicProgrammingKP01(const string& archivo);
-    vector<vector<int>> _matriz_optima();
+    vector<vector<int>> matriz_optima();
     Solution solve();
 };
 
