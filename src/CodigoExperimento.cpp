@@ -32,7 +32,6 @@ void ejecucion(std::ofstream& archivo_generado, std::string algoritmo, const std
 
     archivo_generado << algoritmo << ";" << elapsed.count() << ";" << archivo << ";";
     
-
     archivo_generado << "[";
     for (int i = 0; i < items.size(); ++i) {
         archivo_generado << items[i];
@@ -64,9 +63,11 @@ int main() {
     ejecucion(archivo, "BT", "mochila_chica_n20_no_conflict.txt");
     ejecucion(archivo, "DP", "mochila_chica_n20_no_conflict.txt");
 
+    /*
     ejecucion(archivo, "FB", "mochila_chica_n30_no_conflict.txt");
     ejecucion(archivo, "BT", "mochila_chica_n30_no_conflict.txt");
     ejecucion(archivo, "DP", "mochila_chica_n30_no_conflict.txt");
+    */
 
     //ejecucion(archivo, "FB", "mochila_chica_n40_no_conflict.txt");
     //ejecucion(archivo, "BT", "mochila_chica_n40_no_conflict.txt");
@@ -106,9 +107,11 @@ int main() {
     ejecucion(archivo, "BT", "mochila_apretada_n20_no_conflict.txt");
     ejecucion(archivo, "DP", "mochila_apretada_n20_no_conflict.txt");
 
+    /*
     ejecucion(archivo, "FB", "mochila_apretada_n30_no_conflict.txt");
     ejecucion(archivo, "BT", "mochila_apretada_n30_no_conflict.txt");
     ejecucion(archivo, "DP", "mochila_apretada_n30_no_conflict.txt");
+    */
 
     //ejecucion(archivo, "FB", "mochila_apretada_n40_no_conflict.txt");
     ejecucion(archivo, "BT", "mochila_apretada_n40_no_conflict.txt");
@@ -151,11 +154,13 @@ int main() {
     ejecucion(archivo, "FB", "costo_peso_correlaciona_n26_star.txt");
     ejecucion(archivo, "BT", "costo_peso_correlaciona_n26_star.txt");
 
+    /*
     ejecucion(archivo, "FB", "costo_peso_correlaciona_n28_cycle.txt");
     ejecucion(archivo, "BT", "costo_peso_correlaciona_n28_cycle.txt");
     ejecucion(archivo, "FB", "costo_peso_correlaciona_n28_star.txt");
     ejecucion(archivo, "BT", "costo_peso_correlaciona_n28_star.txt");
 
+    
     ejecucion(archivo, "FB", "costo_peso_correlaciona_n30_cycle.txt");
     ejecucion(archivo, "BT", "costo_peso_correlaciona_n30_cycle.txt");
     ejecucion(archivo, "FB", "costo_peso_correlaciona_n30_star.txt");
@@ -185,6 +190,7 @@ int main() {
     ejecucion(archivo, "BT", "costo_peso_correlaciona_n40_cycle.txt");
     //ejecucion(archivo, "FB", "costo_peso_correlaciona_n40_star.txt");
     ejecucion(archivo, "BT", "costo_peso_correlaciona_n40_star.txt");
+    */
 
     archivo.close();
     return 0;

@@ -46,6 +46,10 @@ int KP01withCGInstance::getProfitTotal() const {
     return this->_beneficioTotal; // O(1)
 }
 
+int KP01withCGInstance::cantidadConflictos() const {
+    return this->_conflictos.getCantidadConflictos();
+}
+
 bool KP01withCGInstance::hasConflict(vector<int> solution, int item) const {
     vector<vector<bool>> matriz = this->_conflictos.getMatriz(); // O(1)
     for (int i = 0; i < solution.size(); i++) { // O(S)

@@ -19,7 +19,8 @@ private:
                 this->_bestSol = S; // O(1)
             } 
         } else {
-            if (!this->_instancia.hasConflict(S.getItems(), k)) { // O(S)
+            if (this->_instancia.cantidadConflictos != 0 &&
+                !this->_instancia.hasConflict(S.getItems(), k)) { // O(S)
                 Mochila_FB(S, k + 1); // O(2^N/2)
                 S.addItem(k, this->_instancia.getWeight(k), this->_instancia.getProfit(k)); // O(log(N))
                 Mochila_FB(S, k + 1); // O(2^N/2)

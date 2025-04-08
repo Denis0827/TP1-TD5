@@ -5,7 +5,7 @@ using namespace std;
 
 Graph::Graph() {
     this->_conflictos; // O(1)
-    this->_cantidad_conflictos; // O(1)
+    this->_cantidad_conflictos = 0; // O(1)
 }
 
 void Graph::construirMatriz(int cantidad_items) {
@@ -26,5 +26,9 @@ void Graph::removeConflict(int item1, int item2) {
     this->_conflictos[item1][item2] = false; // O(1)
     this->_conflictos[item2][item1] = false; // O(1)
     this->_cantidad_conflictos--; // O(1)
+}
+
+int Graph::getCantidadConflictos() const {
+    return this->_cantidad_conflictos;
 }
 

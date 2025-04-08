@@ -38,6 +38,7 @@ public:
     // Pre: index < this->_cantidad_items
 
     // Otros métodos
+    int cantidadConflictos() const;
     bool hasConflict(vector<int> solution, int item) const; // O(S)
     // Pre: item < this->_cantidad_items
 };
