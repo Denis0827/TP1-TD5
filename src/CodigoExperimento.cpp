@@ -20,15 +20,29 @@ void ejecucion(std::ofstream& archivo_generado, std::string algoritmo, const std
     } else if (algoritmo == "BT") {
         BacktrackingKP01wCG BT(archivo);
         S = BT.solve();
-    } else if (algoritmo == "PD") {
-        DynamicProgrammingKP01 PD(archivo);
-        S = PD.solve();
+    } else if (algoritmo == "DP") {
+        DynamicProgrammingKP01 DP(archivo);
+        S = DP.solve();
     }
+
+    vector<int> items = S.getItems();
 
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
 
-    archivo_generado << algoritmo << "," << elapsed.count() << "," << archivo << "\n";
+    archivo_generado << algoritmo << ";" << elapsed.count() << ";" << archivo << ";";
+    
+
+    archivo_generado << "[";
+    for (int i = 0; i < items.size(); ++i) {
+        archivo_generado << items[i];
+        if (i != items.size() - 1) {
+            archivo_generado << ",";
+        }
+    }
+    archivo_generado << "]" << "\n";
+
+
     cout << algoritmo << "," << elapsed.count() << "," << archivo << "\n";
 }
 
@@ -44,78 +58,77 @@ int main() {
     // === Instancias mochila chica ===
     ejecucion(archivo, "FB", "mochila_chica_n10_no_conflict.txt");
     ejecucion(archivo, "BT", "mochila_chica_n10_no_conflict.txt");
-    ejecucion(archivo, "PD", "mochila_chica_n10_no_conflict.txt");
+    ejecucion(archivo, "DP", "mochila_chica_n10_no_conflict.txt");
 
     ejecucion(archivo, "FB", "mochila_chica_n20_no_conflict.txt");
     ejecucion(archivo, "BT", "mochila_chica_n20_no_conflict.txt");
-    ejecucion(archivo, "PD", "mochila_chica_n20_no_conflict.txt");
+    ejecucion(archivo, "DP", "mochila_chica_n20_no_conflict.txt");
 
     ejecucion(archivo, "FB", "mochila_chica_n30_no_conflict.txt");
     ejecucion(archivo, "BT", "mochila_chica_n30_no_conflict.txt");
-    ejecucion(archivo, "PD", "mochila_chica_n30_no_conflict.txt");
+    ejecucion(archivo, "DP", "mochila_chica_n30_no_conflict.txt");
 
     //ejecucion(archivo, "FB", "mochila_chica_n40_no_conflict.txt");
     //ejecucion(archivo, "BT", "mochila_chica_n40_no_conflict.txt");
-    ejecucion(archivo, "PD", "mochila_chica_n40_no_conflict.txt");
+    ejecucion(archivo, "DP", "mochila_chica_n40_no_conflict.txt");
 
     //ejecucion(archivo, "FB", "mochila_chica_n50_no_conflict.txt");
     //ejecucion(archivo, "BT", "mochila_chica_n50_no_conflict.txt");
-    ejecucion(archivo, "PD", "mochila_chica_n50_no_conflict.txt");
+    ejecucion(archivo, "DP", "mochila_chica_n50_no_conflict.txt");
 
     //ejecucion(archivo, "FB", "mochila_chica_n60_no_conflict.txt");
     //ejecucion(archivo, "BT", "mochila_chica_n60_no_conflict.txt");
-    ejecucion(archivo, "PD", "mochila_chica_n60_no_conflict.txt");
+    ejecucion(archivo, "DP", "mochila_chica_n60_no_conflict.txt");
 
     //ejecucion(archivo, "FB", "mochila_chica_n70_no_conflict.txt");
     //ejecucion(archivo, "BT", "mochila_chica_n70_no_conflict.txt");
-    ejecucion(archivo, "PD", "mochila_chica_n70_no_conflict.txt");
+    ejecucion(archivo, "DP", "mochila_chica_n70_no_conflict.txt");
 
     //ejecucion(archivo, "FB", "mochila_chica_n80_no_conflict.txt");
     //ejecucion(archivo, "BT", "mochila_chica_n80_no_conflict.txt");
-    ejecucion(archivo, "PD", "mochila_chica_n80_no_conflict.txt");
+    ejecucion(archivo, "DP", "mochila_chica_n80_no_conflict.txt");
 
     //ejecucion(archivo, "FB", "mochila_chica_n90_no_conflict.txt");
     //ejecucion(archivo, "BT", "mochila_chica_n90_no_conflict.txt");
-    ejecucion(archivo, "PD", "mochila_chica_n90_no_conflict.txt");
+    ejecucion(archivo, "DP", "mochila_chica_n90_no_conflict.txt");
 
     //ejecucion(archivo, "FB", "mochila_chica_n100_no_conflict.txt");
     //ejecucion(archivo, "BT", "mochila_chica_n100_no_conflict.txt");
-    ejecucion(archivo, "PD", "mochila_chica_n100_no_conflict.txt");
-
+    ejecucion(archivo, "DP", "mochila_chica_n100_no_conflict.txt");
+    
 
     // === Instancias mochila apretada ===
     ejecucion(archivo, "FB", "mochila_apretada_n10_no_conflict.txt");
     ejecucion(archivo, "BT", "mochila_apretada_n10_no_conflict.txt");
-    ejecucion(archivo, "PD", "mochila_apretada_n10_no_conflict.txt");
+    ejecucion(archivo, "DP", "mochila_apretada_n10_no_conflict.txt");
 
     ejecucion(archivo, "FB", "mochila_apretada_n20_no_conflict.txt");
     ejecucion(archivo, "BT", "mochila_apretada_n20_no_conflict.txt");
-    ejecucion(archivo, "PD", "mochila_apretada_n20_no_conflict.txt");
+    ejecucion(archivo, "DP", "mochila_apretada_n20_no_conflict.txt");
 
     ejecucion(archivo, "FB", "mochila_apretada_n30_no_conflict.txt");
     ejecucion(archivo, "BT", "mochila_apretada_n30_no_conflict.txt");
-    ejecucion(archivo, "PD", "mochila_apretada_n30_no_conflict.txt");
+    ejecucion(archivo, "DP", "mochila_apretada_n30_no_conflict.txt");
 
     //ejecucion(archivo, "FB", "mochila_apretada_n40_no_conflict.txt");
     ejecucion(archivo, "BT", "mochila_apretada_n40_no_conflict.txt");
-    ejecucion(archivo, "PD", "mochila_apretada_n40_no_conflict.txt");
+    ejecucion(archivo, "DP", "mochila_apretada_n40_no_conflict.txt");
 
     //ejecucion(archivo, "FB", "mochila_apretada_n50_no_conflict.txt");
     ejecucion(archivo, "BT", "mochila_apretada_n50_no_conflict.txt");
-    ejecucion(archivo, "PD", "mochila_apretada_n50_no_conflict.txt");
+    ejecucion(archivo, "DP", "mochila_apretada_n50_no_conflict.txt");
 
     //ejecucion(archivo, "FB", "mochila_apretada_n60_no_conflict.txt");
     ejecucion(archivo, "BT", "mochila_apretada_n60_no_conflict.txt");
-    ejecucion(archivo, "PD", "mochila_apretada_n60_no_conflict.txt");
+    ejecucion(archivo, "DP", "mochila_apretada_n60_no_conflict.txt");
 
     //ejecucion(archivo, "FB", "mochila_apretada_n70_no_conflict.txt");
     ejecucion(archivo, "BT", "mochila_apretada_n70_no_conflict.txt");
-    ejecucion(archivo, "PD", "mochila_apretada_n70_no_conflict.txt");
+    ejecucion(archivo, "DP", "mochila_apretada_n70_no_conflict.txt");
 
     //ejecucion(archivo, "FB", "mochila_apretada_n80_no_conflict.txt");
     ejecucion(archivo, "BT", "mochila_apretada_n80_no_conflict.txt");
-    ejecucion(archivo, "PD", "mochila_apretada_n80_no_conflict.txt");
-
+    ejecucion(archivo, "DP", "mochila_apretada_n80_no_conflict.txt");
 
     // === Instancias mochila con conflicto ===
     ejecucion(archivo, "FB", "costo_peso_correlaciona_n20_cycle.txt");

@@ -4,7 +4,7 @@
 
 #include "Solution.h"
 #include "KP01withCGInstance.h"
-#include "Cancelador.hpp"
+#include "Graph.h"
 
 class BruteForceKP01wCG {
 private:

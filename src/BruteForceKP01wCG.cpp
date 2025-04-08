@@ -2,6 +2,7 @@
 #include "Solution.h"
 #include "KP01withCGInstance.h"
 #include <chrono>
+#include "Graph.h"
 using namespace std;
 
 BruteForceKP01wCG::BruteForceKP01wCG(const string& archivo) {
@@ -15,7 +16,7 @@ Solution BruteForceKP01wCG::solve() {
     return this->_bestSol;
 }
 
-
+/*
 int main() {
     auto start = std::chrono::high_resolution_clock::now();
 
@@ -30,3 +31,4 @@ int main() {
 
     return 0;
 }
+    */

@@ -4,7 +4,6 @@
 
 #include "Solution.h"
 #include "KP01withCGInstance.h"
-#include "Cancelador.hpp"
 
 class BacktrackingKP01wCG {
 private:

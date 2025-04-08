@@ -1,10 +1,12 @@
 // BacktrackingKP01.cpp
 #include "BacktrackingKP01wCG.h"
 #include <chrono>
+#include "Graph.h"
 
 BacktrackingKP01wCG::BacktrackingKP01wCG(const string& archivo) {
     this->_instancia = KP01withCGInstance();
     this->_instancia.cargar_datos(archivo);
+
     this->_bestSol = Solution(); 
 }
 
@@ -13,7 +15,7 @@ Solution BacktrackingKP01wCG::solve() {
     return this->_bestSol;
 }
 
-
+/*
 int main() {
     auto start = std::chrono::high_resolution_clock::now();
 
@@ -28,5 +30,5 @@ int main() {
 
     return 0;
 }
-    
+    */
     
