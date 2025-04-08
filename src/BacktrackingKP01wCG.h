@@ -22,7 +22,7 @@ private:
 
         if (k == this->_instancia.getNumItems()) { // O(1)
             if (S.getWeightSolution() <= this->_instancia.getCapacity() 
-                && S.getProfitSolution() > this->_bestSol.getProfitSolution()) { // O(1)
+                && S.getProfitSolution() > this->_bestSol.getProfitSolution()) { // O(S)
                 this->_bestSol = S; // O(1)
             } 
         } else {

@@ -16,11 +16,11 @@ Solution BruteForceKP01wCG::solve() {
     return this->_bestSol;
 }
 
-/*
+
 int main() {
     auto start = std::chrono::high_resolution_clock::now();
 
-    BruteForceKP01wCG FB = BruteForceKP01wCG("mochila_chica_n20_no_conflict.txt");
+    BruteForceKP01wCG FB = BruteForceKP01wCG("costo_peso_correlaciona_n20_cycle.txt");
     Solution S = FB.solve();
     S.printSolution();
 
@@ -31,5 +31,5 @@ int main() {
 
     return 0;
 }
-    */
+    
     

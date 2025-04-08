@@ -63,11 +63,9 @@ int main() {
     ejecucion(archivo, "BT", "mochila_chica_n20_no_conflict.txt");
     ejecucion(archivo, "DP", "mochila_chica_n20_no_conflict.txt");
 
-    /*
     ejecucion(archivo, "FB", "mochila_chica_n30_no_conflict.txt");
     ejecucion(archivo, "BT", "mochila_chica_n30_no_conflict.txt");
     ejecucion(archivo, "DP", "mochila_chica_n30_no_conflict.txt");
-    */
 
     //ejecucion(archivo, "FB", "mochila_chica_n40_no_conflict.txt");
     //ejecucion(archivo, "BT", "mochila_chica_n40_no_conflict.txt");
@@ -107,11 +105,9 @@ int main() {
     ejecucion(archivo, "BT", "mochila_apretada_n20_no_conflict.txt");
     ejecucion(archivo, "DP", "mochila_apretada_n20_no_conflict.txt");
 
-    /*
     ejecucion(archivo, "FB", "mochila_apretada_n30_no_conflict.txt");
     ejecucion(archivo, "BT", "mochila_apretada_n30_no_conflict.txt");
     ejecucion(archivo, "DP", "mochila_apretada_n30_no_conflict.txt");
-    */
 
     //ejecucion(archivo, "FB", "mochila_apretada_n40_no_conflict.txt");
     ejecucion(archivo, "BT", "mochila_apretada_n40_no_conflict.txt");
@@ -154,7 +150,6 @@ int main() {
     ejecucion(archivo, "FB", "costo_peso_correlaciona_n26_star.txt");
     ejecucion(archivo, "BT", "costo_peso_correlaciona_n26_star.txt");
 
-    /*
     ejecucion(archivo, "FB", "costo_peso_correlaciona_n28_cycle.txt");
     ejecucion(archivo, "BT", "costo_peso_correlaciona_n28_cycle.txt");
     ejecucion(archivo, "FB", "costo_peso_correlaciona_n28_star.txt");
@@ -190,7 +185,6 @@ int main() {
     ejecucion(archivo, "BT", "costo_peso_correlaciona_n40_cycle.txt");
     //ejecucion(archivo, "FB", "costo_peso_correlaciona_n40_star.txt");
     ejecucion(archivo, "BT", "costo_peso_correlaciona_n40_star.txt");
-    */
 
     archivo.close();
     return 0;

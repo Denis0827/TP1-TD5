@@ -47,8 +47,6 @@ if __name__ == "__main__":
         csv_writer = csv.writer(archivo)
         csv_writer.writerow(["Algoritmo", "Tiempo", "Instancia", "Items Seleccionados"])
         
-
-
         # Lista de ejecuciones
         instancias = [
             # Mochila chica
@@ -68,6 +66,9 @@ if __name__ == "__main__":
             "costo_peso_correlaciona_n22_cycle.txt",
             "costo_peso_correlaciona_n22_star.txt",
         ]
+        
+        print("Directorio actual:", os.getcwd())
+
 
         for archivo_instancia in instancias:
             if not os.path.exists(archivo_instancia):

@@ -60,6 +60,18 @@ bool KP01withCGInstance::hasConflict(vector<int> solution, int item) const {
     return false; // O(1)
 }
 
+bool KP01withCGInstance::hasConflictTotal(vector<int> solution) const {
+    vector<vector<bool>> matriz = this->_conflictos.getMatriz(); // O(1)
+    for (int i = 0; i < solution.size(); i++) { // O(N)
+        for (int j = i + 1; j < solution.size(); j++) { // O(N)
+            if (matriz[solution[i]][solution[j]] == true) { // O(1)
+                return true; // O(1)
+            }
+        }
+    }
+    return false; // O(1)
+}
+
 void KP01withCGInstance::cargar_datos(const string& archivo) {
     ifstream file(archivo); // O(1)
     if (!file.is_open()) { // O(1)
