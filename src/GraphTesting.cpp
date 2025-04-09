@@ -10,7 +10,7 @@ TEST(graph_tests, construirMatrizInicializaCorrectamente) {
     auto matriz = G.getMatriz();
     ASSERT_EQ(matriz.size(), 5);
     for (const auto& fila : matriz) {
-        ASSERT_EQ(fila.size(), 5);
+        ASSERT_EQ(fila.size(), 5); 
         for (bool valor : fila) {
             ASSERT_FALSE(valor);
         }
