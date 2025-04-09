@@ -8,19 +8,20 @@ using namespace std;
 BruteForceKP01wCG::BruteForceKP01wCG(const string& archivo) {
     this->_instancia = KP01withCGInstance();
     this->_instancia.cargar_datos(archivo);
-    this->_bestSol = Solution();  
 }
 
 Solution BruteForceKP01wCG::solve() {
-    Mochila_FB(this->_bestSol, 0);
-    return this->_bestSol;
+    Solution bestSol = Solution();
+    Solution parcialSol = Solution();
+    Mochila_FB(parcialSol, 0, bestSol);
+    return bestSol;
 }
 
-
+/*
 int main() {
     auto start = std::chrono::high_resolution_clock::now();
 
-    BruteForceKP01wCG FB = BruteForceKP01wCG("mochila_apretada_n40_no_conflict.txt");
+    BruteForceKP01wCG FB = BruteForceKP01wCG("costo_peso_correlaciona_n20_cycle.txt");
     Solution S = FB.solve();
     S.printSolution();
 
@@ -31,5 +32,5 @@ int main() {
 
     return 0;
 }
-    
+    */
     

@@ -33,6 +33,8 @@ public:
     // Otros métodos
     bool contains(int item) const; // O(log(N))
     void printSolution() const; // O(N)
+
+    void reverse();
 };
 
 #endif // SOLUTION_H

@@ -6,21 +6,22 @@
 BacktrackingKP01wCG::BacktrackingKP01wCG(const string& archivo) {
     this->_instancia = KP01withCGInstance();
     this->_instancia.cargar_datos(archivo);
-
-    this->_bestSol = Solution(); 
 }
 
 Solution BacktrackingKP01wCG::solve() {
-    Mochila_BT(this->_bestSol, 0);
-    return this->_bestSol;
+    Solution bestSol = Solution();
+    Solution parcialSol = Solution();
+    Mochila_BT(parcialSol, 0, bestSol);
+    return bestSol;
 }
 
-
+/*
 int main() {
     auto start = std::chrono::high_resolution_clock::now();
 
-    BacktrackingKP01wCG BT = BacktrackingKP01wCG("costo_peso_correlaciona_n22_cycle.txt");
+    BacktrackingKP01wCG BT = BacktrackingKP01wCG("instances/costo_peso_correlaciona_n20_cycle.txt");
     Solution S = BT.solve();
+    S.printSolution();
 
     auto end = std::chrono::high_resolution_clock::now();
 
@@ -29,4 +30,4 @@ int main() {
 
     return 0;
 }
-    
+*/

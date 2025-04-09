@@ -33,7 +33,7 @@ void ejecucion(std::ofstream& archivo_generado, std::string algoritmo, const std
     archivo_generado << algoritmo << ";" << elapsed.count() << ";" << archivo << ";";
     
     archivo_generado << "[";
-    for (int i = 0; i < items.size(); ++i) {
+    for (size_t i = 0; i < items.size(); ++i) {
         archivo_generado << items[i];
         if (i != items.size() - 1) {
             archivo_generado << ",";
@@ -47,7 +47,7 @@ void ejecucion(std::ofstream& archivo_generado, std::string algoritmo, const std
 
 
 int main() {
-    std::ofstream archivo("resultadoExperimento.csv");
+    std::ofstream archivo("resultadoExperimentoC++.csv");
 
     if (!archivo.is_open()) {
         std::cerr << "No se pudo abrir el archivo." << std::endl;

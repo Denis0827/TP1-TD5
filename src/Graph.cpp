@@ -4,7 +4,7 @@
 using namespace std;
 
 Graph::Graph() {
-    this->_conflictos; // O(1)
+    this->_conflictos = vector<vector<bool>>(); // O(1)
     this->_cantidad_conflictos = 0; // O(1)
 }
 

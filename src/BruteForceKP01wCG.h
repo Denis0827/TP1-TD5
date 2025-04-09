@@ -9,29 +9,26 @@
 class BruteForceKP01wCG {
 private:
     KP01withCGInstance _instancia;
-    Solution _bestSol;
 
-    void Mochila_FB(Solution S, int k) {
-
-        if (k == this->_instancia.getNumItems()) { // O(1)
+    void Mochila_FB(Solution& S, int k, Solution& B) {
+        if (k == this->_instancia.getNumItems()) {
             if (S.getWeightSolution() <= this->_instancia.getCapacity() 
-                && S.getProfitSolution() > this->_bestSol.getProfitSolution()
-                && !this->_instancia.hasConflictTotal(S.getItems())) { // O(N^2))
-                this->_bestSol = S; // O(1)
+                && S.getProfitSolution() > B.getProfitSolution()
+                && !this->_instancia.hasConflictTotal(S.getItems())) {
+                B = S;
             } 
         } else {
-            Mochila_FB(S, k + 1); // O(2^N/2)
-            S.addItem(k, this->_instancia.getWeight(k), this->_instancia.getProfit(k)); // O(log(N))
-            Mochila_FB(S, k + 1); // O(2^N/2)
+            S.addItem(k, this->_instancia.getWeight(k), this->_instancia.getProfit(k));
+            Mochila_FB(S, k + 1, B);
+            S.removeItem(k);
+            Mochila_FB(S, k + 1, B);
         }
-        
     };
-
-    // Complejidad: O(2^N*(log(N)))
 
 public:
     BruteForceKP01wCG(const string& archivo);
     Solution solve();
+
 };
 
 #endif // BRUTEFORCEKP01WCG_H

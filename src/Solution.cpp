@@ -1,12 +1,13 @@
 #include "Solution.h"
 #include <iostream>
 #include <tuple>
+#include <algorithm>
 using namespace std;
 
 Solution::Solution() {
-    this->_itemsSol; // O(1)
-    this->_cantidad_items; // O(1)
-    this->_items; // O(1)
+    this->_itemsSol = map<int, tuple<int, int>>(); // O(1)
+    this->_cantidad_items = 0; // O(1)
+    this->_items = vector<int>(); // O(1)
     this->_pesoTotal = 0; // O(1)
     this->_beneficioTotal = 0; // O(1)
 }
@@ -53,6 +54,10 @@ vector<int> Solution::getItems() const {
 bool Solution::contains(int item) const {
     auto it = this->_itemsSol.find(item);  // O(log(N))
     return it != this->_itemsSol.end(); // O(1)
+}
+
+void Solution::reverse() {
+    std::reverse(this->_items.begin(), this->_items.end());
 }
 
 void Solution::printSolution() const {

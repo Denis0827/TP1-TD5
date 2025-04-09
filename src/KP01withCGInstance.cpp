@@ -10,7 +10,7 @@ using namespace std;
 KP01withCGInstance::KP01withCGInstance() {
     this->_capacidad = 0; // O(1)
     this->_cantidad_items = 0; // O(1)
-    this->_items; // O(1)
+    this->_items = vector<tuple<int, int>>(); // O(1)
     this->_pesoTotal = 0; // O(1)
     this->_beneficioTotal = 0; // O(1)
     this->_conflictos = Graph(); // O(1)
@@ -52,7 +52,7 @@ int KP01withCGInstance::cantidadConflictos() const {
 
 bool KP01withCGInstance::hasConflict(vector<int> solution, int item) const {
     vector<vector<bool>> matriz = this->_conflictos.getMatriz(); // O(1)
-    for (int i = 0; i < solution.size(); i++) { // O(S)
+    for (size_t i = 0; i < solution.size(); i++) { // O(S)
         if (matriz[item][solution[i]] == true) { // O(1)
             return true; // O(1)
         }
@@ -62,8 +62,8 @@ bool KP01withCGInstance::hasConflict(vector<int> solution, int item) const {
 
 bool KP01withCGInstance::hasConflictTotal(vector<int> solution) const {
     vector<vector<bool>> matriz = this->_conflictos.getMatriz(); // O(1)
-    for (int i = 0; i < solution.size(); i++) { // O(N)
-        for (int j = i + 1; j < solution.size(); j++) { // O(N)
+    for (size_t i = 0; i < solution.size(); i++) { // O(N)
+        for (size_t j = i + 1; j < solution.size(); j++) { // O(N)
             if (matriz[solution[i]][solution[j]] == true) { // O(1)
                 return true; // O(1)
             }
@@ -88,14 +88,13 @@ void KP01withCGInstance::cargar_datos(const string& archivo) {
     getline(file, line); // O(1)
     this->_capacidad = stoi(line); // O(1)
 
-    this->_items;  // O(1)
     for (int i = 0; i < this->_cantidad_items; i++) { // O(N) con N = cantidad de items
         this->_items.push_back(make_tuple(0, 0)); // O(1)
     }
     
     vector<int> pesos; string elem_p; // O(1)
     getline(file, line); // O(1)
-    for (int i = 0; i < line.length(); i++) { // O(N)
+    for (size_t i = 0; i < line.length(); i++) { // O(N)
         if (line[i] != ' ') { // O(1)
             elem_p += line[i]; // O(1)
         } else {
@@ -107,7 +106,7 @@ void KP01withCGInstance::cargar_datos(const string& archivo) {
 
     vector<int> beneficios; string elem_b; // O(1)
     getline(file, line); // O(1)
-    for (int i = 0; i < line.length(); i++) { // O(N)
+    for (size_t i = 0; i < line.length(); i++) { // O(N)
         if (line[i] != ' ') { // O(1)
             elem_b += line[i]; // O(1)
         } else { 
@@ -138,7 +137,7 @@ void KP01withCGInstance::cargar_datos(const string& archivo) {
             n1 += line[j]; // O(1)
             j++; // O(1)
         } 
-        for (int k = j + 1; k < line.length(); k++) { // O(1) por lo mismo de arriba
+        for (size_t k = j + 1; k < line.length(); k++) { // O(1) por lo mismo de arriba
             n2 += line[k]; // O(1)
         }
         this->_conflictos.addConflict(stoi(n1), stoi(n2)); // O(1)

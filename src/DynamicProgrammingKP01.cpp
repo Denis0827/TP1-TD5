@@ -60,6 +60,7 @@ Solution DynamicProgrammingKP01::solve() {
         k--;
     }
 
+    S.reverse();
     return S;
 }
 

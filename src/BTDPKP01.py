@@ -77,11 +77,18 @@ def mochila_backtracking_con_conflictos(instancia):
             if instancia.conflictos.hay_conflicto(item.indice, otro.indice):
                 return False
         return True
+    
+    def beneficio_restante(instancia, k, n):
+        suma = 0
+        for i in range(k, n):
+            suma += instancia.items[i].beneficio
+        return suma
 
     def backtrack(i, solucion_actual):
         nonlocal mejor_solucion
         if i == len(instancia.items):
-            if solucion_actual.total_beneficio > mejor_solucion.total_beneficio:
+            if (solucion_actual.total_beneficio > mejor_solucion.total_beneficio
+                and solucion_actual.total_peso <= instancia.capacidad):
                 mejor_solucion = SolucionMochila()
                 mejor_solucion.items = solucion_actual.items.copy()
                 mejor_solucion.total_peso = solucion_actual.total_peso
@@ -91,8 +98,8 @@ def mochila_backtracking_con_conflictos(instancia):
         item = instancia.items[i]
 
         # Opción 1: tomar el ítem si cabe y no hay conflicto
-        if (
-            solucion_actual.total_peso + item.peso <= instancia.capacidad
+        if (solucion_actual.total_beneficio + beneficio_restante(instancia, i, instancia.n) > mejor_solucion.total_beneficio
+            and solucion_actual.total_peso + item.peso <= instancia.capacidad
             and es_compatible(item, solucion_actual.items)
         ):
             solucion_actual.agregar(item)
@@ -127,7 +134,8 @@ def mochila_dp(instancia):
             item = instancia.items[i - 1]
             solucion.agregar(item)
             c -= item.peso
-
+    
+    solucion.items.reverse()
     return solucion
 
 if __name__ == "__main__":
