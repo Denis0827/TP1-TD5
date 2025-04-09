@@ -11,7 +11,7 @@ private:
     KP01withCGInstance _instancia;
     Solution _bestSol;
 
-    void Mochila_FB(const Solution& S, int k) {
+    void Mochila_FB(Solution S, int k) {
 
         if (k == this->_instancia.getNumItems()) { // O(1)
             if (S.getWeightSolution() <= this->_instancia.getCapacity() 
