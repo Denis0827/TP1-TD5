@@ -11,17 +11,7 @@ BacktrackingKP01wCG::BacktrackingKP01wCG(const string& archivo) {
 Solution BacktrackingKP01wCG::solve() {
     Solution bestSol = Solution();
     Solution parcialSol = Solution();
-
-    vector<int> beneficios_restantes = vector<int>();
-    for (int i = 0; i < this->_instancia.getNumItems(); i++) {
-        int suma_restante = 0;
-        for (int j = i; j < this->_instancia.getNumItems(); j++) {
-            suma_restante += this->_instancia.getProfit(j);
-        }
-        beneficios_restantes.push_back(suma_restante);
-    }
-
-    Mochila_BT(parcialSol, 0, bestSol, beneficios_restantes);
+    Mochila_BT(parcialSol, 0, bestSol);
     return bestSol;
 }
 

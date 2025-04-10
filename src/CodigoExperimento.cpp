@@ -47,7 +47,7 @@ void ejecucion(std::ofstream& archivo_generado, std::string algoritmo, const std
 
 
 int main() {
-    std::ofstream archivo("resultadoExperimentoC++.csv");
+    std::ofstream archivo("resultadoExperimentoC++2.csv");
 
     if (!archivo.is_open()) {
         std::cerr << "No se pudo abrir el archivo." << std::endl;
@@ -67,10 +67,8 @@ int main() {
     ejecucion(archivo, "BT", "mochila_chica_n30_no_conflict.txt");
     ejecucion(archivo, "DP", "mochila_chica_n30_no_conflict.txt");
 
-    /*
-    ejecucion(archivo, "FB", "mochila_chica_n40_no_conflict.txt");
-    ejecucion(archivo, "BT", "mochila_chica_n40_no_conflict.txt");
-    */
+    //ejecucion(archivo, "FB", "mochila_chica_n40_no_conflict.txt");
+    //ejecucion(archivo, "BT", "mochila_chica_n40_no_conflict.txt");
     ejecucion(archivo, "DP", "mochila_chica_n40_no_conflict.txt");
 
     //ejecucion(archivo, "FB", "mochila_chica_n50_no_conflict.txt");
@@ -157,30 +155,30 @@ int main() {
     ejecucion(archivo, "FB", "costo_peso_correlaciona_n28_star.txt");
     ejecucion(archivo, "BT", "costo_peso_correlaciona_n28_star.txt");
 
-    //ejecucion(archivo, "FB", "costo_peso_correlaciona_n30_cycle.txt");
+    ejecucion(archivo, "FB", "costo_peso_correlaciona_n30_cycle.txt"); 
     ejecucion(archivo, "BT", "costo_peso_correlaciona_n30_cycle.txt");
-    //ejecucion(archivo, "FB", "costo_peso_correlaciona_n30_star.txt");
+    ejecucion(archivo, "FB", "costo_peso_correlaciona_n30_star.txt");
     ejecucion(archivo, "BT", "costo_peso_correlaciona_n30_star.txt");
 
     //ejecucion(archivo, "FB", "costo_peso_correlaciona_n32_cycle.txt");
     ejecucion(archivo, "BT", "costo_peso_correlaciona_n32_cycle.txt");
     //ejecucion(archivo, "FB", "costo_peso_correlaciona_n32_star.txt");
-    //ejecucion(archivo, "BT", "costo_peso_correlaciona_n32_star.txt");
+    ejecucion(archivo, "BT", "costo_peso_correlaciona_n32_star.txt");
 
     //ejecucion(archivo, "FB", "costo_peso_correlaciona_n34_cycle.txt");
     ejecucion(archivo, "BT", "costo_peso_correlaciona_n34_cycle.txt");
     //ejecucion(archivo, "FB", "costo_peso_correlaciona_n34_star.txt");
-    //ejecucion(archivo, "BT", "costo_peso_correlaciona_n34_star.txt");
+    ejecucion(archivo, "BT", "costo_peso_correlaciona_n34_star.txt");
 
     //ejecucion(archivo, "FB", "costo_peso_correlaciona_n36_cycle.txt");
     ejecucion(archivo, "BT", "costo_peso_correlaciona_n36_cycle.txt");
     //ejecucion(archivo, "FB", "costo_peso_correlaciona_n36_star.txt");
-    //ejecucion(archivo, "BT", "costo_peso_correlaciona_n36_star.txt");
+    ejecucion(archivo, "BT", "costo_peso_correlaciona_n36_star.txt");
 
     //ejecucion(archivo, "FB", "costo_peso_correlaciona_n38_cycle.txt");
     ejecucion(archivo, "BT", "costo_peso_correlaciona_n38_cycle.txt");
     //ejecucion(archivo, "FB", "costo_peso_correlaciona_n38_star.txt");
-    //ejecucion(archivo, "BT", "costo_peso_correlaciona_n38_star.txt");
+    ejecucion(archivo, "BT", "costo_peso_correlaciona_n38_star.txt"); 
 
     //ejecucion(archivo, "FB", "costo_peso_correlaciona_n40_cycle.txt");
     ejecucion(archivo, "BT", "costo_peso_correlaciona_n40_cycle.txt");

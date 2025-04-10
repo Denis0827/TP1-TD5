@@ -15,9 +15,9 @@ def ejecucion(archivo_csv, algoritmo, archivo_instancia):
 
     if algoritmo == "BT":
         solucion = mochila_backtracking_con_conflictos(instancia)
-    elif algoritmo == "PD":
+    elif algoritmo == "DP":
         if instancia.conflictos is not None:
-            print(f"PD no se ejecuta con conflictos: {archivo_instancia}")
+            print(f"DP no se ejecuta con conflictos: {archivo_instancia}")
             return
         solucion = mochila_dp(instancia)
     else:
@@ -42,48 +42,48 @@ def ejecucion(archivo_csv, algoritmo, archivo_instancia):
 
 
 if __name__ == "__main__":
-    nombre_archivo_salida = "resultadoExperimentoPython.csv"
+    nombre_archivo_salida = "resultadoExperimentoPython2.csv"
     with open(nombre_archivo_salida, mode='w', newline="") as archivo:
         csv_writer = csv.writer(archivo)
         csv_writer.writerow(["Algoritmo", "Tiempo", "Instancia", "Items Seleccionados"])
     
         ejecucion(csv_writer, "BT", "mochila_chica_n10_no_conflict.txt")
-        ejecucion(csv_writer, "PD", "mochila_chica_n10_no_conflict.txt")  
+        ejecucion(csv_writer, "DP", "mochila_chica_n10_no_conflict.txt")  
         ejecucion(csv_writer, "BT", "mochila_chica_n20_no_conflict.txt")
-        ejecucion(csv_writer, "PD", "mochila_chica_n20_no_conflict.txt")  
+        ejecucion(csv_writer, "DP", "mochila_chica_n20_no_conflict.txt")  
         ejecucion(csv_writer, "BT", "mochila_chica_n30_no_conflict.txt")
-        ejecucion(csv_writer, "PD", "mochila_chica_n30_no_conflict.txt")  
+        ejecucion(csv_writer, "DP", "mochila_chica_n30_no_conflict.txt")  
         #ejecucion(csv_writer, "BT", "mochila_chica_n40_no_conflict.txt")
-        ejecucion(csv_writer, "PD", "mochila_chica_n40_no_conflict.txt")  
+        ejecucion(csv_writer, "DP", "mochila_chica_n40_no_conflict.txt")  
         #ejecucion(csv_writer, "BT", "mochila_chica_n50_no_conflict.txt")
-        ejecucion(csv_writer, "PD", "mochila_chica_n50_no_conflict.txt")  
+        ejecucion(csv_writer, "DP", "mochila_chica_n50_no_conflict.txt")  
         #ejecucion(csv_writer, "BT", "mochila_chica_n60_no_conflict.txt")
-        ejecucion(csv_writer, "PD", "mochila_chica_n60_no_conflict.txt")  
+        ejecucion(csv_writer, "DP", "mochila_chica_n60_no_conflict.txt")  
         #ejecucion(csv_writer, "BT", "mochila_chica_n70_no_conflict.txt")
-        ejecucion(csv_writer, "PD", "mochila_chica_n70_no_conflict.txt")  
+        ejecucion(csv_writer, "DP", "mochila_chica_n70_no_conflict.txt")  
         #ejecucion(csv_writer, "BT", "mochila_chica_n80_no_conflict.txt")
-        ejecucion(csv_writer, "PD", "mochila_chica_n80_no_conflict.txt")  
+        ejecucion(csv_writer, "DP", "mochila_chica_n80_no_conflict.txt")  
         #ejecucion(csv_writer, "BT", "mochila_chica_n90_no_conflict.txt")
-        #ejecucion(csv_writer, "PD", "mochila_chica_n90_no_conflict.txt")  
+        ejecucion(csv_writer, "DP", "mochila_chica_n90_no_conflict.txt")  
         #ejecucion(csv_writer, "BT", "mochila_chica_n100_no_conflict.txt")
-        #ejecucion(csv_writer, "PD", "mochila_chica_n100_no_conflict.txt")  
+        ejecucion(csv_writer, "DP", "mochila_chica_n100_no_conflict.txt")  
         
         ejecucion(csv_writer, "BT", "mochila_apretada_n10_no_conflict.txt")
-        ejecucion(csv_writer, "PD", "mochila_apretada_n10_no_conflict.txt")  
+        ejecucion(csv_writer, "DP", "mochila_apretada_n10_no_conflict.txt")  
         ejecucion(csv_writer, "BT", "mochila_apretada_n20_no_conflict.txt")
-        ejecucion(csv_writer, "PD", "mochila_apretada_n20_no_conflict.txt")  
+        ejecucion(csv_writer, "DP", "mochila_apretada_n20_no_conflict.txt")  
         ejecucion(csv_writer, "BT", "mochila_apretada_n30_no_conflict.txt")
-        ejecucion(csv_writer, "PD", "mochila_apretada_n30_no_conflict.txt")  
+        ejecucion(csv_writer, "DP", "mochila_apretada_n30_no_conflict.txt")  
         ejecucion(csv_writer, "BT", "mochila_apretada_n40_no_conflict.txt")
-        ejecucion(csv_writer, "PD", "mochila_apretada_n40_no_conflict.txt")  
+        ejecucion(csv_writer, "DP", "mochila_apretada_n40_no_conflict.txt")  
         ejecucion(csv_writer, "BT", "mochila_apretada_n50_no_conflict.txt")
-        ejecucion(csv_writer, "PD", "mochila_apretada_n50_no_conflict.txt")  
+        ejecucion(csv_writer, "DP", "mochila_apretada_n50_no_conflict.txt")  
         ejecucion(csv_writer, "BT", "mochila_apretada_n60_no_conflict.txt")
-        ejecucion(csv_writer, "PD", "mochila_apretada_n60_no_conflict.txt")  
+        ejecucion(csv_writer, "DP", "mochila_apretada_n60_no_conflict.txt")  
         ejecucion(csv_writer, "BT", "mochila_apretada_n70_no_conflict.txt")
-        ejecucion(csv_writer, "PD", "mochila_apretada_n70_no_conflict.txt")  
+        ejecucion(csv_writer, "DP", "mochila_apretada_n70_no_conflict.txt")  
         ejecucion(csv_writer, "BT", "mochila_apretada_n80_no_conflict.txt")
-        ejecucion(csv_writer, "PD", "mochila_apretada_n80_no_conflict.txt") 
+        ejecucion(csv_writer, "DP", "mochila_apretada_n80_no_conflict.txt") 
         
         ejecucion(csv_writer, "BT", "costo_peso_correlaciona_n20_cycle.txt")
         ejecucion(csv_writer, "BT", "costo_peso_correlaciona_n22_cycle.txt")
@@ -103,8 +103,8 @@ if __name__ == "__main__":
         ejecucion(csv_writer, "BT", "costo_peso_correlaciona_n26_star.txt")
         ejecucion(csv_writer, "BT", "costo_peso_correlaciona_n28_star.txt")
         ejecucion(csv_writer, "BT", "costo_peso_correlaciona_n30_star.txt")
-        #ejecucion(csv_writer, "BT", "costo_peso_correlaciona_n32_star.txt")
-        #ejecucion(csv_writer, "BT", "costo_peso_correlaciona_n34_star.txt")
-        #ejecucion(csv_writer, "BT", "costo_peso_correlaciona_n36_star.txt")
-        #ejecucion(csv_writer, "BT", "costo_peso_correlaciona_n38_star.txt")
+        ejecucion(csv_writer, "BT", "costo_peso_correlaciona_n32_star.txt")
+        ejecucion(csv_writer, "BT", "costo_peso_correlaciona_n34_star.txt")
+        ejecucion(csv_writer, "BT", "costo_peso_correlaciona_n36_star.txt")
+        ejecucion(csv_writer, "BT", "costo_peso_correlaciona_n38_star.txt")
         #ejecucion(csv_writer, "BT", "costo_peso_correlaciona_n40_star.txt")

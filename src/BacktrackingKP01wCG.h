@@ -17,7 +17,7 @@ private:
         return suma;
     }
 
-    void Mochila_BT(Solution& S, int k, Solution& B, vector<int> b_restantes) {
+    void Mochila_BT(Solution& S, int k, Solution& B) {
         if (k == this->_instancia.getNumItems()) {
             if (S.getWeightSolution() <= this->_instancia.getCapacity() 
                 && S.getProfitSolution() > B.getProfitSolution()) {
@@ -25,12 +25,12 @@ private:
             }
         } else {
             if ((S.getWeightSolution() <= this->_instancia.getCapacity()) &&
-                (S.getProfitSolution() + b_restantes[k] > B.getProfitSolution()) &&
+                (S.getProfitSolution() + beneficio_restante(this->_instancia, k, this->_instancia.getNumItems()) > B.getProfitSolution()) &&
                 (!this->_instancia.hasConflict(S.getItems(), k))) {
                     S.addItem(k, this->_instancia.getWeight(k), this->_instancia.getProfit(k));
-                    Mochila_BT(S, k + 1, B, b_restantes);
+                    Mochila_BT(S, k + 1, B);
                     S.removeItem(k);                        
-            } Mochila_BT(S, k + 1, B, b_restantes);
+            } Mochila_BT(S, k + 1, B);
         }
     };
 
