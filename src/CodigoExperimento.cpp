@@ -47,7 +47,7 @@ void ejecucion(std::ofstream& archivo_generado, std::string algoritmo, const std
 
 
 int main() {
-    std::ofstream archivo("resultadoExperimentoC++2.csv");
+    std::ofstream archivo("resultadoExperimentoC++.csv");
 
     if (!archivo.is_open()) {
         std::cerr << "No se pudo abrir el archivo." << std::endl;
@@ -55,135 +55,135 @@ int main() {
     }
 
     // === Instancias mochila chica ===
-    ejecucion(archivo, "FB", "mochila_chica_n10_no_conflict.txt");
-    ejecucion(archivo, "BT", "mochila_chica_n10_no_conflict.txt");
-    ejecucion(archivo, "DP", "mochila_chica_n10_no_conflict.txt");
+    ejecucion(archivo, "FB", "instances/mochila_chica_n10_no_conflict.txt");
+    ejecucion(archivo, "BT", "instances/mochila_chica_n10_no_conflict.txt");
+    ejecucion(archivo, "DP", "instances/mochila_chica_n10_no_conflict.txt");
 
-    ejecucion(archivo, "FB", "mochila_chica_n20_no_conflict.txt");
-    ejecucion(archivo, "BT", "mochila_chica_n20_no_conflict.txt");
-    ejecucion(archivo, "DP", "mochila_chica_n20_no_conflict.txt");
+    ejecucion(archivo, "FB", "instances/mochila_chica_n20_no_conflict.txt");
+    ejecucion(archivo, "BT", "instances/mochila_chica_n20_no_conflict.txt");
+    ejecucion(archivo, "DP", "instances/mochila_chica_n20_no_conflict.txt");
 
-    ejecucion(archivo, "FB", "mochila_chica_n30_no_conflict.txt");
-    ejecucion(archivo, "BT", "mochila_chica_n30_no_conflict.txt");
-    ejecucion(archivo, "DP", "mochila_chica_n30_no_conflict.txt");
+    ejecucion(archivo, "FB", "instances/mochila_chica_n30_no_conflict.txt");
+    ejecucion(archivo, "BT", "instances/mochila_chica_n30_no_conflict.txt");
+    ejecucion(archivo, "DP", "instances/mochila_chica_n30_no_conflict.txt");
 
-    //ejecucion(archivo, "FB", "mochila_chica_n40_no_conflict.txt");
-    //ejecucion(archivo, "BT", "mochila_chica_n40_no_conflict.txt");
-    ejecucion(archivo, "DP", "mochila_chica_n40_no_conflict.txt");
+    //ejecucion(archivo, "FB", "instances/mochila_chica_n40_no_conflict.txt");
+    //ejecucion(archivo, "BT", "instances/mochila_chica_n40_no_conflict.txt");
+    ejecucion(archivo, "DP", "instances/mochila_chica_n40_no_conflict.txt");
 
-    //ejecucion(archivo, "FB", "mochila_chica_n50_no_conflict.txt");
-    //ejecucion(archivo, "BT", "mochila_chica_n50_no_conflict.txt");
-    ejecucion(archivo, "DP", "mochila_chica_n50_no_conflict.txt");
+    //ejecucion(archivo, "FB", "instances/mochila_chica_n50_no_conflict.txt");
+    //ejecucion(archivo, "BT", "instances/mochila_chica_n50_no_conflict.txt");
+    ejecucion(archivo, "DP", "instances/mochila_chica_n50_no_conflict.txt");
 
-    //ejecucion(archivo, "FB", "mochila_chica_n60_no_conflict.txt");
-    //ejecucion(archivo, "BT", "mochila_chica_n60_no_conflict.txt");
-    ejecucion(archivo, "DP", "mochila_chica_n60_no_conflict.txt");
+    //ejecucion(archivo, "FB", "instances/mochila_chica_n60_no_conflict.txt");
+    //ejecucion(archivo, "BT", "instances/mochila_chica_n60_no_conflict.txt");
+    ejecucion(archivo, "DP", "instances/mochila_chica_n60_no_conflict.txt");
 
-    //ejecucion(archivo, "FB", "mochila_chica_n70_no_conflict.txt");
-    //ejecucion(archivo, "BT", "mochila_chica_n70_no_conflict.txt");
-    ejecucion(archivo, "DP", "mochila_chica_n70_no_conflict.txt");
+    //ejecucion(archivo, "FB", "instances/mochila_chica_n70_no_conflict.txt");
+    //ejecucion(archivo, "BT", "instances/mochila_chica_n70_no_conflict.txt");
+    ejecucion(archivo, "DP", "instances/mochila_chica_n70_no_conflict.txt");
 
-    //ejecucion(archivo, "FB", "mochila_chica_n80_no_conflict.txt");
-    //ejecucion(archivo, "BT", "mochila_chica_n80_no_conflict.txt");
-    ejecucion(archivo, "DP", "mochila_chica_n80_no_conflict.txt");
+    //ejecucion(archivo, "FB", "instances/mochila_chica_n80_no_conflict.txt");
+    //ejecucion(archivo, "BT", "instances/mochila_chica_n80_no_conflict.txt");
+    ejecucion(archivo, "DP", "instances/mochila_chica_n80_no_conflict.txt");
 
-    //ejecucion(archivo, "FB", "mochila_chica_n90_no_conflict.txt");
-    //ejecucion(archivo, "BT", "mochila_chica_n90_no_conflict.txt");
-    ejecucion(archivo, "DP", "mochila_chica_n90_no_conflict.txt");
+    //ejecucion(archivo, "FB", "instances/mochila_chica_n90_no_conflict.txt");
+    //ejecucion(archivo, "BT", "instances/mochila_chica_n90_no_conflict.txt");
+    ejecucion(archivo, "DP", "instances/mochila_chica_n90_no_conflict.txt");
 
-    //ejecucion(archivo, "FB", "mochila_chica_n100_no_conflict.txt");
-    //ejecucion(archivo, "BT", "mochila_chica_n100_no_conflict.txt");
-    ejecucion(archivo, "DP", "mochila_chica_n100_no_conflict.txt");
+    //ejecucion(archivo, "FB", "instances/mochila_chica_n100_no_conflict.txt");
+    //ejecucion(archivo, "BT", "instances/mochila_chica_n100_no_conflict.txt");
+    ejecucion(archivo, "DP", "instances/mochila_chica_n100_no_conflict.txt");
     
 
     // === Instancias mochila apretada ===
-    ejecucion(archivo, "FB", "mochila_apretada_n10_no_conflict.txt");
-    ejecucion(archivo, "BT", "mochila_apretada_n10_no_conflict.txt");
-    ejecucion(archivo, "DP", "mochila_apretada_n10_no_conflict.txt");
+    ejecucion(archivo, "FB", "instances/mochila_apretada_n10_no_conflict.txt");
+    ejecucion(archivo, "BT", "instances/mochila_apretada_n10_no_conflict.txt");
+    ejecucion(archivo, "DP", "instances/mochila_apretada_n10_no_conflict.txt");
 
-    ejecucion(archivo, "FB", "mochila_apretada_n20_no_conflict.txt");
-    ejecucion(archivo, "BT", "mochila_apretada_n20_no_conflict.txt");
-    ejecucion(archivo, "DP", "mochila_apretada_n20_no_conflict.txt");
+    ejecucion(archivo, "FB", "instances/mochila_apretada_n20_no_conflict.txt");
+    ejecucion(archivo, "BT", "instances/mochila_apretada_n20_no_conflict.txt");
+    ejecucion(archivo, "DP", "instances/mochila_apretada_n20_no_conflict.txt");
 
-    ejecucion(archivo, "FB", "mochila_apretada_n30_no_conflict.txt");
-    ejecucion(archivo, "BT", "mochila_apretada_n30_no_conflict.txt");
-    ejecucion(archivo, "DP", "mochila_apretada_n30_no_conflict.txt");
+    ejecucion(archivo, "FB", "instances/mochila_apretada_n30_no_conflict.txt");
+    ejecucion(archivo, "BT", "instances/mochila_apretada_n30_no_conflict.txt");
+    ejecucion(archivo, "DP", "instances/mochila_apretada_n30_no_conflict.txt");
 
-    //ejecucion(archivo, "FB", "mochila_apretada_n40_no_conflict.txt");
-    ejecucion(archivo, "BT", "mochila_apretada_n40_no_conflict.txt");
-    ejecucion(archivo, "DP", "mochila_apretada_n40_no_conflict.txt");
+    //ejecucion(archivo, "FB", "instances/mochila_apretada_n40_no_conflict.txt");
+    ejecucion(archivo, "BT", "instances/mochila_apretada_n40_no_conflict.txt");
+    ejecucion(archivo, "DP", "instances/mochila_apretada_n40_no_conflict.txt");
 
-    //ejecucion(archivo, "FB", "mochila_apretada_n50_no_conflict.txt");
-    ejecucion(archivo, "BT", "mochila_apretada_n50_no_conflict.txt");
-    ejecucion(archivo, "DP", "mochila_apretada_n50_no_conflict.txt");
+    //ejecucion(archivo, "FB", "instances/mochila_apretada_n50_no_conflict.txt");
+    ejecucion(archivo, "BT", "instances/mochila_apretada_n50_no_conflict.txt");
+    ejecucion(archivo, "DP", "instances/mochila_apretada_n50_no_conflict.txt");
 
-    //ejecucion(archivo, "FB", "mochila_apretada_n60_no_conflict.txt");
-    ejecucion(archivo, "BT", "mochila_apretada_n60_no_conflict.txt");
-    ejecucion(archivo, "DP", "mochila_apretada_n60_no_conflict.txt");
+    //ejecucion(archivo, "FB", "instances/mochila_apretada_n60_no_conflict.txt");
+    ejecucion(archivo, "BT", "instances/mochila_apretada_n60_no_conflict.txt");
+    ejecucion(archivo, "DP", "instances/mochila_apretada_n60_no_conflict.txt");
 
-    //ejecucion(archivo, "FB", "mochila_apretada_n70_no_conflict.txt");
-    ejecucion(archivo, "BT", "mochila_apretada_n70_no_conflict.txt");
-    ejecucion(archivo, "DP", "mochila_apretada_n70_no_conflict.txt");
+    //ejecucion(archivo, "FB", "instances/mochila_apretada_n70_no_conflict.txt");
+    ejecucion(archivo, "BT", "instances/mochila_apretada_n70_no_conflict.txt");
+    ejecucion(archivo, "DP", "instances/mochila_apretada_n70_no_conflict.txt");
 
-    //ejecucion(archivo, "FB", "mochila_apretada_n80_no_conflict.txt");
-    ejecucion(archivo, "BT", "mochila_apretada_n80_no_conflict.txt");
-    ejecucion(archivo, "DP", "mochila_apretada_n80_no_conflict.txt");
+    //ejecucion(archivo, "FB", "instances/mochila_apretada_n80_no_conflict.txt");
+    ejecucion(archivo, "BT", "instances/mochila_apretada_n80_no_conflict.txt");
+    ejecucion(archivo, "DP", "instances/mochila_apretada_n80_no_conflict.txt");
 
     // === Instancias mochila con conflicto ===
-    ejecucion(archivo, "FB", "costo_peso_correlaciona_n20_cycle.txt");
-    ejecucion(archivo, "BT", "costo_peso_correlaciona_n20_cycle.txt");
-    ejecucion(archivo, "FB", "costo_peso_correlaciona_n20_star.txt");
-    ejecucion(archivo, "BT", "costo_peso_correlaciona_n20_star.txt");
+    ejecucion(archivo, "FB", "instances/costo_peso_correlaciona_n20_cycle.txt");
+    ejecucion(archivo, "BT", "instances/costo_peso_correlaciona_n20_cycle.txt");
+    ejecucion(archivo, "FB", "instances/costo_peso_correlaciona_n20_star.txt");
+    ejecucion(archivo, "BT", "instances/costo_peso_correlaciona_n20_star.txt");
 
-    ejecucion(archivo, "FB", "costo_peso_correlaciona_n22_cycle.txt");
-    ejecucion(archivo, "BT", "costo_peso_correlaciona_n22_cycle.txt");
-    ejecucion(archivo, "FB", "costo_peso_correlaciona_n22_star.txt");
-    ejecucion(archivo, "BT", "costo_peso_correlaciona_n22_star.txt");
+    ejecucion(archivo, "FB", "instances/costo_peso_correlaciona_n22_cycle.txt");
+    ejecucion(archivo, "BT", "instances/costo_peso_correlaciona_n22_cycle.txt");
+    ejecucion(archivo, "FB", "instances/costo_peso_correlaciona_n22_star.txt");
+    ejecucion(archivo, "BT", "instances/costo_peso_correlaciona_n22_star.txt");
 
-    ejecucion(archivo, "FB", "costo_peso_correlaciona_n24_cycle.txt");
-    ejecucion(archivo, "BT", "costo_peso_correlaciona_n24_cycle.txt");
-    ejecucion(archivo, "FB", "costo_peso_correlaciona_n24_star.txt");
-    ejecucion(archivo, "BT", "costo_peso_correlaciona_n24_star.txt");
+    ejecucion(archivo, "FB", "instances/costo_peso_correlaciona_n24_cycle.txt");
+    ejecucion(archivo, "BT", "instances/costo_peso_correlaciona_n24_cycle.txt");
+    ejecucion(archivo, "FB", "instances/costo_peso_correlaciona_n24_star.txt");
+    ejecucion(archivo, "BT", "instances/costo_peso_correlaciona_n24_star.txt");
 
-    ejecucion(archivo, "FB", "costo_peso_correlaciona_n26_cycle.txt");
-    ejecucion(archivo, "BT", "costo_peso_correlaciona_n26_cycle.txt");
-    ejecucion(archivo, "FB", "costo_peso_correlaciona_n26_star.txt");
-    ejecucion(archivo, "BT", "costo_peso_correlaciona_n26_star.txt");
+    ejecucion(archivo, "FB", "instances/costo_peso_correlaciona_n26_cycle.txt");
+    ejecucion(archivo, "BT", "instances/costo_peso_correlaciona_n26_cycle.txt");
+    ejecucion(archivo, "FB", "instances/costo_peso_correlaciona_n26_star.txt");
+    ejecucion(archivo, "BT", "instances/costo_peso_correlaciona_n26_star.txt");
 
-    ejecucion(archivo, "FB", "costo_peso_correlaciona_n28_cycle.txt");
-    ejecucion(archivo, "BT", "costo_peso_correlaciona_n28_cycle.txt");
-    ejecucion(archivo, "FB", "costo_peso_correlaciona_n28_star.txt");
-    ejecucion(archivo, "BT", "costo_peso_correlaciona_n28_star.txt");
+    ejecucion(archivo, "FB", "instances/costo_peso_correlaciona_n28_cycle.txt");
+    ejecucion(archivo, "BT", "instances/costo_peso_correlaciona_n28_cycle.txt");
+    ejecucion(archivo, "FB", "instances/costo_peso_correlaciona_n28_star.txt");
+    ejecucion(archivo, "BT", "instances/costo_peso_correlaciona_n28_star.txt");
 
-    ejecucion(archivo, "FB", "costo_peso_correlaciona_n30_cycle.txt"); 
-    ejecucion(archivo, "BT", "costo_peso_correlaciona_n30_cycle.txt");
-    ejecucion(archivo, "FB", "costo_peso_correlaciona_n30_star.txt");
-    ejecucion(archivo, "BT", "costo_peso_correlaciona_n30_star.txt");
+    ejecucion(archivo, "FB", "instances/costo_peso_correlaciona_n30_cycle.txt"); 
+    ejecucion(archivo, "BT", "instances/costo_peso_correlaciona_n30_cycle.txt");
+    ejecucion(archivo, "FB", "instances/costo_peso_correlaciona_n30_star.txt");
+    ejecucion(archivo, "BT", "instances/costo_peso_correlaciona_n30_star.txt");
 
-    //ejecucion(archivo, "FB", "costo_peso_correlaciona_n32_cycle.txt");
-    ejecucion(archivo, "BT", "costo_peso_correlaciona_n32_cycle.txt");
-    //ejecucion(archivo, "FB", "costo_peso_correlaciona_n32_star.txt");
-    ejecucion(archivo, "BT", "costo_peso_correlaciona_n32_star.txt");
+    //ejecucion(archivo, "FB", "instances/costo_peso_correlaciona_n32_cycle.txt");
+    ejecucion(archivo, "BT", "instances/costo_peso_correlaciona_n32_cycle.txt");
+    //ejecucion(archivo, "FB", "instances/costo_peso_correlaciona_n32_star.txt");
+    ejecucion(archivo, "BT", "instances/costo_peso_correlaciona_n32_star.txt");
 
-    //ejecucion(archivo, "FB", "costo_peso_correlaciona_n34_cycle.txt");
-    ejecucion(archivo, "BT", "costo_peso_correlaciona_n34_cycle.txt");
-    //ejecucion(archivo, "FB", "costo_peso_correlaciona_n34_star.txt");
-    ejecucion(archivo, "BT", "costo_peso_correlaciona_n34_star.txt");
+    //ejecucion(archivo, "FB", "instances/costo_peso_correlaciona_n34_cycle.txt");
+    ejecucion(archivo, "BT", "instances/costo_peso_correlaciona_n34_cycle.txt");
+    //ejecucion(archivo, "FB", "instances/costo_peso_correlaciona_n34_star.txt");
+    ejecucion(archivo, "BT", "instances/costo_peso_correlaciona_n34_star.txt");
 
-    //ejecucion(archivo, "FB", "costo_peso_correlaciona_n36_cycle.txt");
-    ejecucion(archivo, "BT", "costo_peso_correlaciona_n36_cycle.txt");
-    //ejecucion(archivo, "FB", "costo_peso_correlaciona_n36_star.txt");
-    ejecucion(archivo, "BT", "costo_peso_correlaciona_n36_star.txt");
+    //ejecucion(archivo, "FB", "instances/costo_peso_correlaciona_n36_cycle.txt");
+    ejecucion(archivo, "BT", "instances/costo_peso_correlaciona_n36_cycle.txt");
+    //ejecucion(archivo, "FB", "instances/costo_peso_correlaciona_n36_star.txt");
+    ejecucion(archivo, "BT", "instances/costo_peso_correlaciona_n36_star.txt");
 
-    //ejecucion(archivo, "FB", "costo_peso_correlaciona_n38_cycle.txt");
-    ejecucion(archivo, "BT", "costo_peso_correlaciona_n38_cycle.txt");
-    //ejecucion(archivo, "FB", "costo_peso_correlaciona_n38_star.txt");
-    ejecucion(archivo, "BT", "costo_peso_correlaciona_n38_star.txt"); 
+    //ejecucion(archivo, "FB", "instances/costo_peso_correlaciona_n38_cycle.txt");
+    ejecucion(archivo, "BT", "instances/costo_peso_correlaciona_n38_cycle.txt");
+    //ejecucion(archivo, "FB", "instances/costo_peso_correlaciona_n38_star.txt");
+    ejecucion(archivo, "BT", "instances/costo_peso_correlaciona_n38_star.txt"); 
 
-    //ejecucion(archivo, "FB", "costo_peso_correlaciona_n40_cycle.txt");
-    ejecucion(archivo, "BT", "costo_peso_correlaciona_n40_cycle.txt");
-    //ejecucion(archivo, "FB", "costo_peso_correlaciona_n40_star.txt");
-    //ejecucion(archivo, "BT", "costo_peso_correlaciona_n40_star.txt");
+    //ejecucion(archivo, "FB", "instances/costo_peso_correlaciona_n40_cycle.txt");
+    ejecucion(archivo, "BT", "instances/costo_peso_correlaciona_n40_cycle.txt");
+    //ejecucion(archivo, "FB", "instances/costo_peso_correlaciona_n40_star.txt");
+    //ejecucion(archivo, "BT", "instances/costo_peso_correlaciona_n40_star.txt");
 
     archivo.close();
     return 0;

@@ -144,13 +144,15 @@ def mochila_dp(instancia):  # O(N*C)
     return solucion  # O(1)
 
 if __name__ == "__main__":
-    instancia = InstanciaMochila("costo_peso_correlaciona_n20_cycle.txt")
+    instancia = InstanciaMochila("instances/costo_peso_correlaciona_n20_cycle.txt")
 
     print("Backtracking con conflictos:")
     print(mochila_backtracking_con_conflictos(instancia))
 
+
+
 if __name__ == "__main__":
-    instancia = InstanciaMochila("costo_peso_correlaciona_n20_cycle.txt")  # O(N + C)
+    instancia = InstanciaMochila("instances/costo_peso_correlaciona_n20_cycle.txt")  # O(N + C)
 
     print("Backtracking con conflictos:")  # O(1)
     print(mochila_backtracking_con_conflictos(instancia))  # O(2^N)
