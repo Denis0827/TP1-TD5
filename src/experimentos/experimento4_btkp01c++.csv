@@ -1,0 +1,12 @@
+Algoritmo,Tiempo,Instancia
+BT,0.00279211,mochila_chica_n10_no_conflict.txt
+BT,0.257199,mochila_chica_n20_no_conflict.txt
+BT,51.1211,mochila_chica_n30_no_conflict.txt
+BT,0.0016959,mochila_apretada_n10_no_conflict.txt
+BT,0.00464681,mochila_apretada_n20_no_conflict.txt
+BT,0.00195167,mochila_apretada_n30_no_conflict.txt
+BT,0.00454096,mochila_apretada_n40_no_conflict.txt
+BT,0.00572864,mochila_apretada_n50_no_conflict.txt
+BT,0.0171422,mochila_apretada_n60_no_conflict.txt
+BT,0.00413999,mochila_apretada_n70_no_conflict.txt
+BT,0.0153125,mochila_apretada_n80_no_conflict.txt
