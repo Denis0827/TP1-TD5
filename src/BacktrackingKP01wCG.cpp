@@ -4,15 +4,15 @@
 #include "Graph.h"
 
 BacktrackingKP01wCG::BacktrackingKP01wCG(const string& archivo) {
-    this->_instancia = KP01withCGInstance();
-    this->_instancia.cargar_datos(archivo);
+    this->_instancia = KP01withCGInstance();        // O(1)
+    this->_instancia.cargar_datos(archivo);         // O(N^2 + C)
 }
 
 Solution BacktrackingKP01wCG::solve() {
-    Solution bestSol = Solution();
-    Solution parcialSol = Solution();
-    Mochila_BT(parcialSol, 0, bestSol);
-    return bestSol;
+    Solution bestSol = Solution();      // O(1)
+    Solution parcialSol = Solution();   // O(1)
+    Mochila_BT(parcialSol, 0, bestSol); // O(2^N · (N + S)) en el peor caso
+    return bestSol;                     // O(1)
 }
 
 /*

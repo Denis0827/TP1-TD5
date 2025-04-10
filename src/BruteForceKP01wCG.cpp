@@ -5,16 +5,18 @@
 #include "Graph.h"
 using namespace std;
 
+// Constructor: carga la instancia desde archivo
 BruteForceKP01wCG::BruteForceKP01wCG(const string& archivo) {
-    this->_instancia = KP01withCGInstance();
-    this->_instancia.cargar_datos(archivo);
+    this->_instancia = KP01withCGInstance(); // O(1)
+    this->_instancia.cargar_datos(archivo);  // O(N^2 + C)
 }
 
+// Método que lanza el algoritmo de fuerza bruta
 Solution BruteForceKP01wCG::solve() {
-    Solution bestSol = Solution();
-    Solution parcialSol = Solution();
-    Mochila_FB(parcialSol, 0, bestSol);
-    return bestSol;
+    Solution bestSol = Solution(); // O(1)
+    Solution parcialSol = Solution(); // O(1)
+    Mochila_FB(parcialSol, 0, bestSol); // O(2^N * (N + S^2))
+    return bestSol; // O(1)
 }
 
 /*
