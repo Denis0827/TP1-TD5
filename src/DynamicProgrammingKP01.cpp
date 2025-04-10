@@ -5,64 +5,65 @@
 #include <chrono>
 #include <algorithm>
 
+// Constructor: carga instancia desde archivo
 DynamicProgrammingKP01::DynamicProgrammingKP01(const string& archivo) {
-    this->_instancia = KP01withCGInstance();
-    this->_instancia.cargar_datos(archivo);
-    this->_bestSol = Solution();  
+    this->_instancia = KP01withCGInstance();        // O(1)
+    this->_instancia.cargar_datos(archivo);         // O(N^2 + C)
+    this->_bestSol = Solution();                    // O(1)
 }
 
+// Construcción de la tabla dinámica
 vector<vector<int>> DynamicProgrammingKP01::matriz_optima() {
-
-    int n = this->_instancia.getNumItems();
-    int C = this->_instancia.getCapacity();
+    int n = this->_instancia.getNumItems();         // O(1)
+    int C = this->_instancia.getCapacity();         // O(1)
     
-    vector<vector<int>> m(n + 1, vector<int>(C + 1, -1));
+    vector<vector<int>> m(n + 1, vector<int>(C + 1, -1)); // O(N*C)
 
-    for (int i = 0; i <= this->_instancia.getNumItems(); i++) {
-        m[i][0] = 0;
+    for (int i = 0; i <= n; i++) { // O(N)
+        m[i][0] = 0; // O(1)
     }
 
-    for (int c = 0; c <= this->_instancia.getCapacity(); c++) {
-        m[0][c] = 0;
+    for (int c = 0; c <= C; c++) { // O(C)
+        m[0][c] = 0; // O(1)
     }
 
-    for (int k = 1; k <= this->_instancia.getNumItems(); k++){
-        for (int c = 1; c <= this->_instancia.getCapacity(); c++){
-            if (this->_instancia.getWeight(k - 1) > c){
-                m[k][c] = m[k-1][c];
-            }
-            else {
-                if (m[k - 1][c] > this->_instancia.getProfit(k - 1) + m[k - 1][c - this->_instancia.getWeight(k - 1)]){
-                    m[k][c] = m[k - 1][c];
-                }
-                else {
-                    m[k][c] = this->_instancia.getProfit(k - 1) + m[k - 1][c - this->_instancia.getWeight(k - 1)];
+    for (int k = 1; k <= n; k++) {                   // O(N)
+        for (int c = 1; c <= C; c++) {               // O(C)
+            if (this->_instancia.getWeight(k - 1) > c) {
+                m[k][c] = m[k-1][c];                 // O(1)
+            } else {
+                if (m[k - 1][c] > this->_instancia.getProfit(k - 1) + m[k - 1][c - this->_instancia.getWeight(k - 1)]) {
+                    m[k][c] = m[k - 1][c];           // O(1)
+                } else {
+                    m[k][c] = this->_instancia.getProfit(k - 1) + m[k - 1][c - this->_instancia.getWeight(k - 1)]; // O(1)
                 }
             }
-        }   
+        }
     }
 
-    return m;
+    return m; // O(1)
 }
 
+// Reconstrucción de la solución óptima desde la tabla
 Solution DynamicProgrammingKP01::solve() {
-    vector<vector<int>> m = matriz_optima();
-    int k = this->_instancia.getNumItems();
-    int c = this->_instancia.getCapacity();
-    Solution S = Solution();
+    vector<vector<int>> m = matriz_optima();         // O(N*C)
+    int k = this->_instancia.getNumItems();          // O(1)
+    int c = this->_instancia.getCapacity();          // O(1)
+    Solution S = Solution();                         // O(1)
 
-    while (k != 0 && c != 0) {
+    while (k != 0 && c != 0) {                        // O(N)
         if (m[k][c] != m[k-1][c] &&
             m[k][c] == m[k-1][c - this->_instancia.getWeight(k-1)] + this->_instancia.getProfit(k-1)) {
-            S.addItem(k-1, this->_instancia.getWeight(k-1), this->_instancia.getProfit(k-1));
-            c -= this->_instancia.getWeight(k-1);
+            S.addItem(k-1, this->_instancia.getWeight(k-1), this->_instancia.getProfit(k-1)); // O(log N)
+            c -= this->_instancia.getWeight(k-1); // O(1)
         }
-        k--;
+        k--; // O(1)
     }
 
-    S.reverse();
-    return S;
+    S.reverse(); // O(N)
+    return S; // O(1)
 }
+
 
 /*
 int main() {
