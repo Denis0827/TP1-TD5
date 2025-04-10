@@ -41,7 +41,7 @@ public:
     int cantidadConflictos() const;
     bool hasConflict(vector<int> solution, int item) const; // O(S)
     // Pre: item < this->_cantidad_items
-    bool hasConflictTotal(vector<int> solution) const; // O(S)
+    bool hasConflictTotal(vector<int> solution) const; // O(S^2)
 };
 
 #endif // KP01WITHCGINSTANCE_H

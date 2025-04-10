@@ -94,7 +94,8 @@ void KP01withCGInstance::cargar_datos(const string& archivo) {
     
     vector<int> pesos; string elem_p; // O(1)
     getline(file, line); // O(1)
-    for (size_t i = 0; i < line.length(); i++) { // O(N)
+    for (size_t i = 0; i < line.length(); i++) { // O(1) porque sabemos que la línea puede tener una cantidad limitada de caracteres, pues 
+                                                // como mucho habrían 999 ítems en la instancia (o eso creemos....)
         if (line[i] != ' ') { // O(1)
             elem_p += line[i]; // O(1)
         } else {
@@ -106,7 +107,7 @@ void KP01withCGInstance::cargar_datos(const string& archivo) {
 
     vector<int> beneficios; string elem_b; // O(1)
     getline(file, line); // O(1)
-    for (size_t i = 0; i < line.length(); i++) { // O(N)
+    for (size_t i = 0; i < line.length(); i++) { // O(1)
         if (line[i] != ' ') { // O(1)
             elem_b += line[i]; // O(1)
         } else { 
@@ -132,8 +133,7 @@ void KP01withCGInstance::cargar_datos(const string& archivo) {
     for (int i = 0; i < cant_conflictos; i++) { // O(C) con C = cantidad de conflictos
         n1 = ""; n2 = ""; // O(1)
         getline(file, line); j = 0; // O(1)
-        while (line[j] != ' ') { // O(1) porque sabemos que la línea puede tener una cantidad limitada de caracteres, pues 
-                                 // como mucho habrían 999 ítems en la instancia (o eso creemos....)
+        while (line[j] != ' ') { // O(1) 
             n1 += line[j]; // O(1)
             j++; // O(1)
         } 

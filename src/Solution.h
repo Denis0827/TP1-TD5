@@ -22,7 +22,7 @@ public:
     
     // Modificadores
     void addItem(int item, int peso, int beneficio); // O(log(N))
-    void removeItem(int item); // O(N) por ahora
+    void removeItem(int item); // O(N)
     // Pre: item tiene que estar en el conjunto de _itemsSol y _items
 
     // Observadores
@@ -34,7 +34,7 @@ public:
     bool contains(int item) const; // O(log(N))
     void printSolution() const; // O(N)
 
-    void reverse();
+    void reverse(); // O(N)
 };
 
 #endif // SOLUTION_H

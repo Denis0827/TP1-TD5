@@ -16,14 +16,14 @@ void Solution::addItem(int item, int peso, int beneficio) {
     this->_itemsSol[item] = make_tuple(peso, beneficio); // O(1)
     this->_beneficioTotal += beneficio; // O(1)
     this->_pesoTotal += peso; // O(1)
-    this->_items.push_back(item); // O(1)
+    this->_items.push_back(item); // O(log(N))
     this->_cantidad_items += 1; // O(1)
 }
 
 void Solution::removeItem(int item) {
     int peso = get<0>(this->_itemsSol[item]); // O(1)
     int beneficio = get<1>(this->_itemsSol[item]); // O(1)
-    this->_itemsSol.erase(item); // O(log(N)) con N = cantidad de items
+    this->_itemsSol.erase(item); // O(log(N))
     this->_pesoTotal -= peso; // O(1)
     this->_beneficioTotal -= beneficio; // O(1)
     this->_cantidad_items -= 1; // O(1)
