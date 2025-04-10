@@ -3,8 +3,8 @@
 
 #include <vector>
 #include <iostream>
-#include <map>
 #include <tuple>
+#include <map>
 using namespace std;
 
 class Solution {
@@ -21,7 +21,7 @@ public:
     Solution(); // O(1)
     
     // Modificadores
-    void addItem(int item, int peso, int beneficio); // O(log(N))
+    void addItem(int item, int peso, int beneficio); // O(1)
     void removeItem(int item); // O(N)
     // Pre: item tiene que estar en el conjunto de _itemsSol y _items
 
@@ -31,9 +31,8 @@ public:
     vector<int> getItems() const; // O(1)
 
     // Otros métodos
-    bool contains(int item) const; // O(log(N))
+    bool contains(int item) const; // O(N)
     void printSolution() const; // O(N)
-
     void reverse(); // O(N)
 };
 

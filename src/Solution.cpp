@@ -16,19 +16,17 @@ void Solution::addItem(int item, int peso, int beneficio) {
     this->_itemsSol[item] = make_tuple(peso, beneficio); // O(1)
     this->_beneficioTotal += beneficio; // O(1)
     this->_pesoTotal += peso; // O(1)
-    this->_items.push_back(item); // O(log(N))
+    this->_items.push_back(item); // O(1), agrego el ítem en el vector
     this->_cantidad_items += 1; // O(1)
 }
 
 void Solution::removeItem(int item) {
-    int peso = get<0>(this->_itemsSol[item]); // O(1)
-    int beneficio = get<1>(this->_itemsSol[item]); // O(1)
-    this->_itemsSol.erase(item); // O(log(N))
-    this->_pesoTotal -= peso; // O(1)
-    this->_beneficioTotal -= beneficio; // O(1)
+    this->_pesoTotal -= get<0>(this->_itemsSol[item]); // O(1)
+    this->_beneficioTotal -= get<1>(this->_itemsSol[item]); // O(1)
     this->_cantidad_items -= 1; // O(1)
+    this->_itemsSol.erase(item); // O(log(N)) con N = cantidad de items
 
-    // Ver si puedo sacar este while
+    // Elimino el item dentro del vector de ítems
     auto it = this->_items.begin(); // O(1)
     while (it != this->_items.end()) { // O(N)
         if (*it == item) { // O(1)
@@ -52,22 +50,22 @@ vector<int> Solution::getItems() const {
 }
 
 bool Solution::contains(int item) const {
-    auto it = this->_itemsSol.find(item);  // O(log(N))
+    auto it = this->_itemsSol.find(item); // O(log(N))
     return it != this->_itemsSol.end(); // O(1)
 }
 
-void Solution::reverse() {
-    std::reverse(this->_items.begin(), this->_items.end());
+void Solution::printSolution() const {
+    auto it_items = this->_itemsSol.begin(); // O(1)
+    while (it_items != this->_itemsSol.end()) { // O(N)
+        cout << "Item: " << it_items->first  // O(1)
+             << ", Peso: " 
+             << get<0>(it_items->second) << ", Beneficio: "  // O(1)
+             << get<1>(it_items->second) << "." // O(1)
+             << endl; // O(1)
+        ++it_items; // O(1)    
+    }
 }
 
-void Solution::printSolution() const {
-    auto it_itemsSol = this->_itemsSol.begin(); // O(1)
-    while (it_itemsSol != this->_itemsSol.end()) { // O(N)
-        cout << "Item: " << it_itemsSol->first  // O(1)
-             << ", Peso: " 
-             << get<0>(it_itemsSol->second) << ", Beneficio: "  // O(1)
-             << get<1>(it_itemsSol->second) << "." // O(1)
-             << endl; // O(1)
-        ++it_itemsSol; // O(1)    
-    }
+void Solution::reverse() {
+    std::reverse(this->_items.begin(), this->_items.end()); // O(N)
 }

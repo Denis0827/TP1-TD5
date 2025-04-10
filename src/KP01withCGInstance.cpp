@@ -16,11 +16,6 @@ KP01withCGInstance::KP01withCGInstance() {
     this->_conflictos = Graph(); // O(1)
 }
 
-void KP01withCGInstance::setWeightProfit(int index, int weight, int profit) {
-    this->_items[index] = make_tuple(weight, profit); // O(1)
-    this->_pesoTotal += weight; // O(1)
-    this->_beneficioTotal += profit; // O(1)
-}
 
 int KP01withCGInstance::getWeight(int index) const {
     return get<0>(this->_items[index]); // O(1)
@@ -47,32 +42,16 @@ int KP01withCGInstance::getProfitTotal() const {
 }
 
 int KP01withCGInstance::cantidadConflictos() const {
-    return this->_conflictos.getCantidadConflictos();
+    return this->_conflictos.getCantidadConflictos(); // O(1)
 }
 
-bool KP01withCGInstance::hasConflict(vector<int> solution, int item) const {
-    vector<vector<bool>> matriz = this->_conflictos.getMatriz(); // O(1)
-    for (size_t i = 0; i < solution.size(); i++) { // O(S)
-        if (matriz[item][solution[i]] == true) { // O(1)
-            return true; // O(1)
-        }
-    }
-    return false; // O(1)
+void KP01withCGInstance::setWeightProfit(int index, int weight, int profit) {
+    this->_items[index] = make_tuple(weight, profit); // O(1)
+    this->_pesoTotal += weight; // O(1)
+    this->_beneficioTotal += profit; // O(1)
 }
 
-bool KP01withCGInstance::hasConflictTotal(vector<int> solution) const {
-    vector<vector<bool>> matriz = this->_conflictos.getMatriz(); // O(1)
-    for (size_t i = 0; i < solution.size(); i++) { // O(N)
-        for (size_t j = i + 1; j < solution.size(); j++) { // O(N)
-            if (matriz[solution[i]][solution[j]] == true) { // O(1)
-                return true; // O(1)
-            }
-        }
-    }
-    return false; // O(1)
-}
-
-void KP01withCGInstance::cargar_datos(const string& archivo) {
+void KP01withCGInstance::cargarDatos(const string& archivo) {
     ifstream file(archivo); // O(1)
     if (!file.is_open()) { // O(1)
         cerr << "No se pudo abrir el archivo " << archivo << endl; // O(1)
@@ -80,11 +59,11 @@ void KP01withCGInstance::cargar_datos(const string& archivo) {
 
     string line; // O(1)
     
-    // Leer la primera línea: número total de ítems (n)
+    // Leer la primera línea: número total de ítems
     getline(file, line); // O(1)
     this->_cantidad_items = stoi(line); // O(1)
 
-    // Leer la segunda línea: capacidad de la mochila (C)
+    // Leer la segunda línea: capacidad de la mochila
     getline(file, line); // O(1)
     this->_capacidad = stoi(line); // O(1)
 
@@ -107,7 +86,7 @@ void KP01withCGInstance::cargar_datos(const string& archivo) {
 
     vector<int> beneficios; string elem_b; // O(1)
     getline(file, line); // O(1)
-    for (size_t i = 0; i < line.length(); i++) { // O(1)
+    for (size_t i = 0; i < line.length(); i++) { // O(1) por lo mismo que antes
         if (line[i] != ' ') { // O(1)
             elem_b += line[i]; // O(1)
         } else { 
@@ -133,7 +112,7 @@ void KP01withCGInstance::cargar_datos(const string& archivo) {
     for (int i = 0; i < cant_conflictos; i++) { // O(C) con C = cantidad de conflictos
         n1 = ""; n2 = ""; // O(1)
         getline(file, line); j = 0; // O(1)
-        while (line[j] != ' ') { // O(1) 
+        while (line[j] != ' ') { // O(1) porque fijé una cantidad máximo de ítems (999)
             n1 += line[j]; // O(1)
             j++; // O(1)
         } 
@@ -144,4 +123,29 @@ void KP01withCGInstance::cargar_datos(const string& archivo) {
     }
 
     file.close();  // O(1)
+}
+
+bool KP01withCGInstance::hasConflict(vector<int> solution, int item) const {
+    vector<vector<bool>> matriz = this->_conflictos.getMatriz(); // O(1)
+    for (size_t i = 0; i < solution.size(); i++) { // O(S)
+        // Verifico si para algún item dentro de solution se genera conflicto con el item pasado por parámetro
+        if (matriz[item][solution[i]] == true) { // O(1) 
+            return true; // O(1)
+        }
+    }
+    return false; // O(1)
+}
+
+bool KP01withCGInstance::hasConflictTotal(vector<int> solution) const {
+    vector<vector<bool>> matriz = this->_conflictos.getMatriz(); // O(1)
+    for (size_t i = 0; i < solution.size(); i++) { // O(S) con S = cantidad de elem en solution
+        // Verifico solo para lo nuevo, lo anterior al ítem ya fue verificado y 
+        // cumple que si m[i][j] = true, entonces m[j][i] = true
+        for (size_t j = i + 1; j < solution.size(); j++) { // O(S)
+            if (matriz[solution[i]][solution[j]] == true) { // O(1)
+                return true; // O(1)
+            }
+        }
+    }
+    return false; // O(1)
 }

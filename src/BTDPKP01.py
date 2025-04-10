@@ -1,31 +1,34 @@
 # Clase que representa un ítem con peso, beneficio e índice.
 class Item:
-    def __init__(self, peso, beneficio, indice):  # O(1)
+    def __init__(self, peso, beneficio, indice): 
         self.peso = peso  # O(1)
         self.beneficio = beneficio  # O(1)
         self.indice = indice  # O(1)
 
-    def __repr__(self):  # O(1)
+    def __repr__(self):  
         return f"Item: {self.indice}, Peso: {self.peso}, Beneficio: {self.beneficio}"  # O(1)
 
 
 # Clase que modela el grafo de conflictos como una matriz booleana simétrica.
 class MatrizConflictos:
-    def __init__(self, cantidad_items):  # O(N^2)
+    def __init__(self, cantidad_items): 
         self.n = cantidad_items  # O(1)
         self.matriz = [[False] * self.n for _ in range(self.n)]  # O(N^2)
+        # Complejidad total: O(N^2)
 
-    def agregar_conflicto(self, i, j):  # O(1)
+    def agregar_conflicto(self, i, j):  
         self.matriz[i][j] = True  # O(1)
         self.matriz[j][i] = True  # O(1)
+        # Complejidad total: O(1)
 
-    def hay_conflicto(self, i, j):  # O(1)
+    def hay_conflicto(self, i, j): 
         return self.matriz[i][j]  # O(1)
+        # Complejidad total: O(1)
 
 
 # Clase que representa una instancia del problema de la mochila con posibles conflictos.
 class InstanciaMochila:
-    def __init__(self, archivo):  # O(N + C)
+    def __init__(self, archivo): 
         with open(archivo, 'r') as f:  # O(N)
             self.n = int(f.readline())  # O(1)
             self.capacidad = int(f.readline())  # O(1)
@@ -43,29 +46,34 @@ class InstanciaMochila:
                 for _ in range(cantidad_conflictos):  # O(C)
                     i, j = map(int, f.readline().split())  # O(1)
                     self.conflictos.agregar_conflicto(i, j)  # O(1)
+        # Complejidad total: O(N^2 + C)
 
 
 # Clase que representa una solución parcial o completa de la mochila.
 class SolucionMochila:
-    def __init__(self):  # O(1)
+    def __init__(self):  
         self.items = []  # O(1)
         self.total_peso = 0  # O(1)
         self.total_beneficio = 0  # O(1)
+        # Complejidad total: O(1)
 
-    def agregar(self, item):  # O(1)
+    def agregar(self, item):  
         self.items.append(item)  # O(1)
         self.total_peso += item.peso  # O(1)
         self.total_beneficio += item.beneficio  # O(1)
+        # Complejidad total: O(1)
 
-    def remover(self, item):  # O(N)
+    def remover(self, item):  
         self.items.remove(item)  # O(N)
         self.total_peso -= item.peso  # O(1)
         self.total_beneficio -= item.beneficio  # O(1)
+        # Complejidad total: O(N)
 
-    def indices_seleccionados(self):  # O(N)
+    def indices_seleccionados(self):  
         return [item.indice for item in self.items]  # O(N)
+        # Complejidad total: O(N)
 
-    def __repr__(self):  # O(N)
+    def __repr__(self): 
         return "\n".join(
             [f"Item: {item.indice}, Peso: {item.peso}, Beneficio: {item.beneficio}" for item in self.items]  # O(N)
         )
@@ -75,21 +83,23 @@ class SolucionMochila:
 def mochila_backtracking_con_conflictos(instancia):  # O(2^N)
     mejor_solucion = SolucionMochila()  # O(1)
 
-    def es_compatible(item, items_seleccionados):  # O(S), con S cantidad de ítems seleccionados
+    def es_compatible(item, items_seleccionados):  
         if instancia.conflictos is None:  # O(1)
             return True  # O(1)
         for otro in items_seleccionados:  # O(S)
             if instancia.conflictos.hay_conflicto(item.indice, otro.indice):  # O(1)
                 return False  # O(1)
         return True  # O(1)
+        # Complejidad total: O(S), con S cantidad de ítems seleccionados
     
-    def beneficio_restante(instancia, k, n):  # O(N)
+    def beneficio_restante(instancia, k, n): 
         suma = 0  # O(1)
         for i in range(k, n):  # O(N)
             suma += instancia.items[i].beneficio  # O(1)
         return suma  # O(1)
+        # Complejidad total: O(N)
 
-    def backtrack(i, solucion_actual):  # O(2^N) en el peor caso
+    def backtrack(i, solucion_actual):  
         nonlocal mejor_solucion  # O(1)
         if i == len(instancia.items):  # O(1)
             if (solucion_actual.total_beneficio > mejor_solucion.total_beneficio
@@ -103,9 +113,9 @@ def mochila_backtracking_con_conflictos(instancia):  # O(2^N)
         item = instancia.items[i]  # O(1)
 
         # Opción 1: tomar el ítem si cabe y no hay conflicto
-        if (solucion_actual.total_beneficio + beneficio_restante(instancia, i, instancia.n) > mejor_solucion.total_beneficio
-            and solucion_actual.total_peso + item.peso <= instancia.capacidad
-            and es_compatible(item, solucion_actual.items)):  # O(N)
+        if (solucion_actual.total_beneficio + beneficio_restante(instancia, i, instancia.n) > mejor_solucion.total_beneficio # O(N)
+            and solucion_actual.total_peso + item.peso <= instancia.capacidad # O(1)
+            and es_compatible(item, solucion_actual.items)):  # O(S)
             solucion_actual.agregar(item)  # O(1)
             backtrack(i + 1, solucion_actual)  # O(2^N)
             solucion_actual.remover(item)  # O(N) (por el uso de `list.remove()`)
@@ -115,9 +125,10 @@ def mochila_backtracking_con_conflictos(instancia):  # O(2^N)
 
     backtrack(0, SolucionMochila())  # O(2^N)
     return mejor_solucion  # O(1)
+    # Complejidad total: O(2^N*(N + S))
 
 
-def mochila_dp(instancia):  # O(N*C)
+def mochila_dp(instancia): 
     n = instancia.n  # O(1)
     C = instancia.capacidad  # O(1)
     dp = [[0] * (C + 1) for _ in range(n + 1)]  # O(N*C)
@@ -142,14 +153,13 @@ def mochila_dp(instancia):  # O(N*C)
     
     solucion.items.reverse()  # O(N)
     return solucion  # O(1)
+    # Complejidad total: O(N*C)
 
 if __name__ == "__main__":
     instancia = InstanciaMochila("instances/costo_peso_correlaciona_n20_cycle.txt")
 
     print("Backtracking con conflictos:")
     print(mochila_backtracking_con_conflictos(instancia))
-
-
 
 if __name__ == "__main__":
     instancia = InstanciaMochila("instances/costo_peso_correlaciona_n20_cycle.txt")  # O(N + C)

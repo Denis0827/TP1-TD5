@@ -8,7 +8,7 @@ using namespace std;
 // Constructor: carga la instancia desde archivo
 BruteForceKP01wCG::BruteForceKP01wCG(const string& archivo) {
     this->_instancia = KP01withCGInstance(); // O(1)
-    this->_instancia.cargar_datos(archivo);  // O(N^2 + C)
+    this->_instancia.cargarDatos(archivo);  // O(N^2 + C)
 }
 
 // Método que lanza el algoritmo de fuerza bruta
@@ -23,7 +23,7 @@ Solution BruteForceKP01wCG::solve() {
 int main() {
     auto start = std::chrono::high_resolution_clock::now();
 
-    BruteForceKP01wCG FB = BruteForceKP01wCG("costo_peso_correlaciona_n20_cycle.txt");
+    BruteForceKP01wCG FB = BruteForceKP01wCG("instances/costo_peso_correlaciona_n20_cycle.txt");
     Solution S = FB.solve();
     S.printSolution();
 

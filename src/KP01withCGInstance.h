@@ -31,14 +31,14 @@ public:
     int getCapacity() const; // O(1)
     int getWeightTotal() const; // O(1)
     int getProfitTotal() const; // O(1)
+    int cantidadConflictos() const;
 
     // Modificadores
-    void cargar_datos(const string& archivo); // O(N^2 + C)
     void setWeightProfit(int index, int weight, int profit); // O(1)
     // Pre: index < this->_cantidad_items
+    void cargarDatos(const string& archivo); // O(N^2 + C)
 
     // Otros métodos
-    int cantidadConflictos() const;
     bool hasConflict(vector<int> solution, int item) const; // O(S)
     // Pre: item < this->_cantidad_items
     bool hasConflictTotal(vector<int> solution) const; // O(S^2)

@@ -10,17 +10,19 @@ private:
     int _cantidad_conflictos;
 
 public:
+    // Constructor
     Graph(); // O(1)
 
-    void construirMatriz(int cantidad_items); // O(N^2)
+    // Observadores
+    int getCantidadConflictos() const; // O(1)
     vector<vector<bool>> getMatriz() const; // O(1)
 
+    // Modificadores
+    void construirMatriz(int cantidad_items); // O(N^2)
     void addConflict(int item1, int item2); // O(1)
     // Pre: item1 < this->_cantidad_items && item2 < this->_cantidad_items
     void removeConflict(int item1, int item2); // O(1)
     // Pre: item1 < this->_cantidad_items && item2 < this->_cantidad_items
-    int getCantidadConflictos() const; // O(1)
-
 };
 
 #endif // GRAPH_H

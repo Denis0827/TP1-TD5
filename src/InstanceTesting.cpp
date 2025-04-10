@@ -8,24 +8,29 @@ void caso_getters_basicos() {
     cout << "[Caso: Getters con mochila chica sin conflictos]..." << endl;
 
     KP01withCGInstance instancia;
-    instancia.cargar_datos("mochila_chica_n10_no_conflict.txt");
+    instancia.cargarDatos("instances/mochila_chica_n10_no_conflict.txt");
 
     if (instancia.getNumItems() != 10) errores++;
     if (instancia.getCapacity() != 6016) errores++;
-
     if (instancia.getWeight(0) != 1351) errores++;
     if (instancia.getProfit(0) != 1962) errores++;
-    if (instancia.getWeightTotal() != 10220) errores++; // suma de pesos
-    if (instancia.getProfitTotal() != 12255) errores++; // suma de beneficios
+    if (instancia.getWeightTotal() != 9220) errores++; // suma de pesos
+    if (instancia.getProfitTotal() != 12229) errores++; // suma de beneficios
+
+    instancia.setWeightProfit(10, 1, 2);
+    if (instancia.getWeight(10) != 1) errores++;
 }
 
 void caso_conflictos_en_instancia() {
     cout << "[Caso: Verificación de conflictos en instancia con grafo tipo ciclo]..." << endl;
 
     KP01withCGInstance instancia;
-    instancia.cargar_datos("costo_peso_correlaciona_n20_cycle.txt");
+    instancia.cargarDatos("instances/costo_peso_correlaciona_n20_cycle.txt");
 
-    vector<int> solucion = {1};
+    vector<Item> solucion = vector<Item>();
+    Item k = Item(1, 4903, 5961);
+    solucion.push_back(k);
+    if (!(instancia.cantidadConflictos() == 20)) errores++;
     if (!instancia.hasConflict(solucion, 2)) errores++; // 1–2 están en conflicto
     if (instancia.hasConflict(solucion, 5)) errores++;  // 1–5 no están en conflicto
 }

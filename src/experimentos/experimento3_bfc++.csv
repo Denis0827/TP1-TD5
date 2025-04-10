@@ -1,0 +1,13 @@
+Algoritmo,Tiempo,Instancia
+FB,0.435112,costo_peso_correlaciona_n20_cycle.txt  
+FB,0.738167,costo_peso_correlaciona_n22_cycle.txt  
+FB,2.44102,costo_peso_correlaciona_n24_cycle.txt  
+FB,11.4654,costo_peso_correlaciona_n26_cycle.txt  
+FB,48.9639,costo_peso_correlaciona_n28_cycle.txt  
+FB,817.614,costo_peso_correlaciona_n30_cycle.txt  
+FB,0.0918784,costo_peso_correlaciona_n20_star.txt  
+FB,0.351578,costo_peso_correlaciona_n22_star.txt  
+FB,1.47452,costo_peso_correlaciona_n24_star.txt  
+FB,4.99,costo_peso_correlaciona_n26_star.txt  
+FB,20.5368,costo_peso_correlaciona_n28_star.txt  
+FB,86.3037,costo_peso_correlaciona_n30_star.txt
