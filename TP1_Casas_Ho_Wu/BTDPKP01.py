@@ -153,7 +153,7 @@ def mochila_dp(instancia):
     
     solucion.items.reverse()  # O(N)
     return solucion  # O(1)
-    # Complejidad total: O(N*C)
+    # Complejidad total: O(N*C + N)
 
 if __name__ == "__main__":
     instancia = InstanciaMochila("instances/costo_peso_correlaciona_n20_cycle.txt")

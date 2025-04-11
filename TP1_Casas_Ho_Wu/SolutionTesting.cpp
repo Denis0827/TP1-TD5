@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Solution.h"
-#include "Item.h"
 using namespace std;
 
 int errores = 0;
@@ -20,7 +19,7 @@ void caso_agregado_simple() {
     if (sol.getWeightSolution() != 10) errores++;
     if (sol.getProfitSolution() != 100) errores++;
     if (sol.getItems().size() != 1) errores++;
-    if (sol.getItems()[0].getNumero() != 2) errores++;
+    if (sol.getItems()[0] != 2) errores++;
     if (!sol.contains(2)) errores++;
 }
 

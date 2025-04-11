@@ -15,11 +15,11 @@ Solution BacktrackingKP01wCG::solve() {
     return bestSol; // O(1)
 }
 
-
+/*
 int main() {
     auto start = std::chrono::high_resolution_clock::now();
 
-    BacktrackingKP01wCG BT = BacktrackingKP01wCG("instances/costo_peso_correlaciona_n20_cycle.txt");
+    BacktrackingKP01wCG BT = BacktrackingKP01wCG("instances/mochila_chica_n20_no_conflict.txt");
     Solution S = BT.solve();
     S.printSolution();
 
@@ -30,4 +30,5 @@ int main() {
 
     return 0;
 }
+    */
     

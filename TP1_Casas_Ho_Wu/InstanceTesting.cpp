@@ -27,12 +27,9 @@ void caso_conflictos_en_instancia() {
     KP01withCGInstance instancia;
     instancia.cargarDatos("instances/costo_peso_correlaciona_n20_cycle.txt");
 
-    vector<Item> solucion = vector<Item>();
-    Item k = Item(1, 4903, 5961);
-    solucion.push_back(k);
     if (!(instancia.cantidadConflictos() == 20)) errores++;
-    if (!instancia.hasConflict(solucion, 2)) errores++; // 1–2 están en conflicto
-    if (instancia.hasConflict(solucion, 5)) errores++;  // 1–5 no están en conflicto
+    if (!instancia.hasConflict({1}, 2)) errores++; // 1–2 están en conflicto
+    if (instancia.hasConflict({1}, 5)) errores++;  // 1–5 no están en conflicto
 }
 
 int main() {

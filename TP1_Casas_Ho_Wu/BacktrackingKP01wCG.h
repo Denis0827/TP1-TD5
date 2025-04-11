@@ -31,10 +31,10 @@ class BacktrackingKP01wCG {
                     (S.getProfitSolution() + beneficio_restante(this->_instancia, k, this->_instancia.getNumItems()) > B.getProfitSolution()) && // O(N), poda por optimalidad
                     (!this->_instancia.hasConflict(S.getItems(), k))) { // O(S), poda por factibilidad para el grafo de conflictos
                         S.addItem(k, this->_instancia.getWeight(k), this->_instancia.getProfit(k)); // O(1)
-                        Mochila_BT(S, k + 1, B);  // recursión → O(2^N)
+                        Mochila_BT(S, k + 1, B);  // recursión → O(2^N/2)
                         S.removeItem(k); // O(N)
                 }
-                Mochila_BT(S, k + 1, B); // recursión → O(2^N)
+                Mochila_BT(S, k + 1, B); // recursión → O(2^N/2)
             }
         };
     
